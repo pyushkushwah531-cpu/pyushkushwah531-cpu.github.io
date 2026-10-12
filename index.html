@@ -13,8 +13,7 @@
 <script src="https://nap5k.com/tag.min.js" data-zone="11995662" async data-cfasync="false"></script>
 <!-- Rewarded Interstitial SDK for Quiz -->
 <script src="//libtl.com/sdk.js" data-zone="11995662" data-sdk="show_11995662"></script>
-<!-- OnClick / Popunder - New Tag -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="294109" async data-cfasync="false"></script>
+
 <!-- ==== MONETAG ADS END ==== -->
 
 
@@ -1636,7 +1635,21 @@ onclick="toggleDark()">
 
 
 <script>
+// एड क्लिक और क्विज काउंटर ट्रैक करने के लिए
+let subjectClickCount = 0;
+let quizQuestionCount = 0;
 
+// Monetag Rewarded Ad दिखाने का फंक्शन
+function triggerRewardedAd() {
+    try {
+        if (typeof show_11995662 === "function") {
+            show_11995662();
+        }
+    } catch(e) {
+        console.log("Ad error", e);
+    }
+}
+    
 /* =====================================================
    CONTENT DATABASE
    ===================================================== */
@@ -14906,16 +14919,23 @@ showScreen("homeScreen");
    ===================================================== */
 
 function openSubject(subject){
+    // क्लिक काउंटर बढ़ाएँ
+    subjectClickCount++;
 
-selectedSubject = subject;
+    // 1st क्लिक और 4th क्लिक पर ad दिखाएँ
+    if (subjectClickCount === 1 || subjectClickCount === 4) {
+        triggerRewardedAd();
+        if (subjectClickCount >= 4) {
+            subjectClickCount = 0; // काउंटर रीसेट करें ताकि आगे भी काम करे
+        }
+    }
 
-document.getElementById("searchInput").value="";
-
-showScreen("conceptScreen");
-
-renderConcepts();
-
+    selectedSubject = subject;
+    document.getElementById("searchInput").value="";
+    showScreen("conceptScreen");
+    renderConcepts();
 }
+    
 
 
 /* =====================================================
@@ -15169,7 +15189,35 @@ alert("यह आखिरी Concept है।");
 }
 
 }
+function nextQuestion(){
+    const buttons = document.querySelectorAll(".option");
+    let answered = false;
+    buttons.forEach(function(button){
+        if(button.disabled){
+            answered = true;
+        }
+    });
 
+    if(!answered){
+        alert("पहले answer चुनें।");
+        return;
+    }
+
+    // --- क्विज के बीच में एड दिखाने का काउंटर ---
+    quizQuestionCount++;
+    if (quizQuestionCount >= 15) { // हर 15 प्रश्न पूरे होने पर ad दिखाएगा
+        quizQuestionCount = 0;
+        triggerRewardedAd();
+    }
+
+    if(currentQuestionIndex < currentQuiz.length-1){
+        currentQuestionIndex++;
+        loadQuizQuestion();
+    }else{
+        showQuizResult();
+    }
+}
+    
 
 /* =====================================================
    FONT SIZE
