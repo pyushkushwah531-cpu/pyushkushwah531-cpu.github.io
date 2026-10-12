@@ -1642,11 +1642,21 @@ let quizQuestionCount = 0;
 // Monetag Rewarded Ad दिखाने का फंक्शन
 function triggerRewardedAd() {
     try {
-        if (typeof show_11995662 === "function") {
-            show_11995662();
+        if (typeof window.show_11995662 !== "function") {
+            console.warn("Monetag Rewarded Ad SDK लोड नहीं हुआ।");
+            return;
         }
-    } catch(e) {
-        console.log("Ad error", e);
+
+        const adResult = window.show_11995662();
+
+        if (adResult && typeof adResult.catch === "function") {
+            adResult.catch(function(error) {
+                console.error("Monetag Ad Error:", error);
+            });
+        }
+
+    } catch (error) {
+        console.error("Monetag Rewarded Ad Error:", error);
     }
 }
     
