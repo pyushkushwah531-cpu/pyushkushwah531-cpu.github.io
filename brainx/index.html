@@ -1,28 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head><style>
-@font-face {
-  font-family: "Optimistic";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Optimistic Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-}
-:where(html) {
-  font-family: "Optimistic", system-ui, sans-serif;
-}
-:where(code, pre, kbd, samp) {
-  font-family: "Optimistic Mono", ui-monospace, monospace;
-}
-</style>
+<head>
 
 <meta charset="UTF-8">
 
@@ -565,7 +543,7 @@ box-shadow:
 0 6px 15px rgba(99,102,241,.20);
 }
 
-.btn3:disabled{
+.btn3:{
 opacity:.4;
 }
 
@@ -1081,7 +1059,7 @@ transform:scale(1);
 
 /* Disabled */
 
-#nextBtn:disabled{
+#nextBtn:{
     background:
         linear-gradient(
             135deg,
@@ -1103,7 +1081,7 @@ transform:scale(1);
 
 /* Enabled hover */
 
-#nextBtn:not(:disabled):hover{
+#nextBtn:not(:):hover{
 
     transform:translateY(-2px);
 
@@ -1863,6 +1841,7 @@ Reset Progress
 
 <!-- XP -->
 
+
 <div class="drawer-xp">
 
 <div class="drawer-xp-label">
@@ -1909,7 +1888,7 @@ let xp = Number(localStorage.getItem("bx_xp")) || 0;
 
 let levels = JSON.parse(
     localStorage.getItem("bx_levels") ||
-    '{"memory":1,"focus":1,"logic":1,"reaction":1,"word":1,"maze":1}'
+    '{"memory":1,"focus":1,"logic":1,"color":1,"reaction":1,"word":1,"maze":1}'
 );
 
 let streak =
@@ -2121,57 +2100,38 @@ function claimStreak(){
    GAME START
 ========================================= */
 
-function startGame(game){
 
+function startGame(game){
     currentGame = game;
 
-    document.getElementById(
-        "modal"
-    ).classList.add("show");
-
-    document.getElementById(
-        "nextBtn"
-    ).disabled = true;
-
-
+    // Ad on every 4th click already handled globally
     if(game === "memory"){
-
         startMemory();
-
     }
-
     else if(game === "focus"){
-
         startFocus();
-
     }
-
     else if(game === "logic"){
-
         startLogic();
-
     }
-else if(game === "color"){
-
-    startColorMatch();
-
-}
+    else if(game === "color"){
+        startColorMatch();
+    }
+    else if(game === "reaction"){
+        startReaction();
+    }
+    else if(game === "word"){
+        startWord();
+    }
+    else if(game === "maze"){
+        startMaze();
+    }
     else{
-
-        showBXAlert(
-            "This game will be activated in Part 3.",
-            "Coming Soon 🚀",
-            "🔒"
-        );
-
+        // Any future game -> start memory as fallback
+        startMemory();
     }
-
 }
 
-
-/* =========================================
-   CLOSE MODAL
-========================================= */
 
 function closeModal(){
 
@@ -2199,7 +2159,7 @@ function restartGame(){
 
 }
 
-  
+
 /* =========================================
    NEXT LEVEL
 ========================================= */
@@ -2220,7 +2180,7 @@ function nextLevel(){
     showBXAlert(
         "Level " +
         levels[currentGame] +
-        " unlocked! 🔥",
+        " ununlocked! 🔥",
         "Level Up!",
         "🚀"
     );
@@ -2247,7 +2207,7 @@ function gameComplete(
 
     document.getElementById(
         "nextBtn"
-    ).disabled = false;
+    ). = false;
 
 
     xp += amount;
@@ -2786,7 +2746,7 @@ function startLogic(){
 
     /* =========================================
        1. CONSTANT ADDITION
-      ========================================= */
+    ========================================= */
 
     if(type === 1){
 
@@ -3122,7 +3082,8 @@ function startLogic(){
        16. ×2 , +3
     ========================================= */
 
-    else if(type === 16){
+    
+else if(type === 16){
 
         let n = start;
 
@@ -3397,7 +3358,8 @@ let colorActive = false;
 /* =========================================
    START COLOR MATCH
 ========================================= */
-  function startColorMatch(){
+
+function startColorMatch(){
 
     clearInterval(gameTimer);
 
@@ -4137,9 +4099,8 @@ function checkWord(index){
 /* =========================================
    🗺️ MIND MAZE
 ========================================= */
-
-
-let mazePlayer = 0;
+  
+ let mazePlayer = 0;
 
 let mazeGoal = 15;
 
@@ -4415,7 +4376,7 @@ function startGame(game){
         document.getElementById("nextBtn");
 
     if(nextBtn){
-        nextBtn.disabled = true;
+        nextBtn. = true;
         nextBtn.style.display = "block";
     }
 
@@ -4440,14 +4401,21 @@ function startGame(game){
 
     }
 
+    else if(game === "number"){
+        if(typeof startNumber !== 'undefined') startNumber(); else startMemory();
+    }
+    else if(game === "word"){
+        if(typeof startWord !== 'undefined') startWord(); else startMemory();
+    }
+    else if(game === "puzzle"){
+        if(typeof startPuzzle !== 'undefined') startPuzzle(); else startMemory();
+    }
+    else if(game === "math"){
+        if(typeof startMath !== 'undefined') startMath(); else startMemory();
+    }
     else{
-
-        showBXAlert(
-            "This game will be activated in Part 3.",
-            "Coming Soon 🚀",
-            "🔒"
-        );
-
+        // Fallback - start memory for any other game
+        startMemory();
     }
 
 }
@@ -4481,7 +4449,7 @@ function closeModal(){
 /* =========================================
    🔄 RESTART CURRENT GAME
 ========================================= */
-  
+
 function restartGame(){
 
     if(!currentGame)
@@ -4531,7 +4499,7 @@ function nextLevel(){
 
     if(nextBtn){
 
-        nextBtn.disabled = true;
+        nextBtn. = true;
 
     }
 
@@ -4590,7 +4558,7 @@ function gameComplete(amount = 20){
 
     if(nextBtn){
 
-        nextBtn.disabled = false;
+        nextBtn. = false;
 
         nextBtn.style.display = "block";
 
@@ -5316,106 +5284,84 @@ catch(error){
 
 
 
+
 /* =====================================================
-   💰 FINAL AD LOGIC - 1st Click & Every 4th Click = Rewarded
-   Banner = Always On Home + Game Play
-   Zone = 294109 (Real Code)
+   💰 FINAL AD LOGIC - ONLY 1st & 4th Click = Rewarded
+   - No Ad on 2nd,3rd,5th,6th,7th
+   - 10 sec ad then X button (Monetag SDK handles X)
+   - Zone = 294109
 ===================================================== */
 let totalBtnClicks = parseInt(localStorage.getItem('bx_ad_clicks') || '0');
-let rewardedReady = false;
+let isAdShowing = false;
 
-// Check if rewarded SDK loaded
 setInterval(()=>{
-    if(typeof show_294109 === 'function') rewardedReady = true;
-}, 1000);
+    if(typeof show_294109 === 'function'){
+        console.log("Rewarded SDK Ready Zone 294109");
+    }
+}, 2000);
 
 function showRewardedAdFinal(rewardAmount = 50, customMsg = null){
+    if(isAdShowing) return;
+    isAdShowing = true;
     if(typeof show_294109 === 'function'){
         show_294109().then(()=>{
-            console.log("✅ Rewarded Completed - Zone 294109");
+            console.log("✅ Rewarded Completed - 10sec watched");
             xp += rewardAmount;
             saveData();
             updateUI();
+            isAdShowing = false;
             if(customMsg){
                 showBXAlert(customMsg, "Reward Claimed! 🎉", "💰");
             } else {
-                showBXAlert(`+${rewardAmount} XP Added! Keep Training 🧠`, "Reward Unlocked!", "🎉");
+                showBXAlert(`+${rewardAmount} XP Added!`, "Reward Unlocked!", "🎉");
             }
         }).catch(e=>{
-            console.log("Rewarded Failed", e);
-            showBXAlert("Ad not ready, try again in 2 seconds.", "Oops 😕", "⏳");
+            console.log("Ad closed early", e);
+            isAdShowing = false;
+            showBXAlert("Watch full 10 sec to get reward!", "Oops 😕", "⏳");
         });
     } else {
-        showBXAlert("Ad Loading... Please wait", "Loading ⏳", "⌛");
+        isAdShowing = false;
+        xp += rewardAmount;
+        saveData(); updateUI();
+        showBXAlert(`+${rewardAmount} XP Added!`, "Reward!", "🎉");
     }
 }
 
-// Core function - called on every button click
 function trackButtonClickForAd(){
+    if(isAdShowing) return false;
     totalBtnClicks++;
     localStorage.setItem('bx_ad_clicks', totalBtnClicks.toString());
-    console.log("Button Clicks:", totalBtnClicks);
-    
-    // Logic: 1st click and every 4th click (1,4,8,12,16...)
-    if(totalBtnClicks === 1 || totalBtnClicks % 4 === 0){
+    console.log("Clicks:", totalBtnClicks);
+    let shouldShowAd = (totalBtnClicks === 1 || totalBtnClicks % 4 === 0);
+    if(shouldShowAd){
         setTimeout(()=>{
-            if(confirm(`🎁 Watch Ad to get +50 XP Bonus?\n\nClicks: ${totalBtnClicks} | Ad will unlock reward!`)){
+            if(confirm(`🎁 Watch 10 sec Ad for +50 XP?\nClick ${totalBtnClicks} - X after 10 sec`)){
                 showRewardedAdFinal(50);
             }
         }, 400);
-        return true; // Ad shown
+        return true;
     }
     return false;
 }
 
-// Attach to ALL buttons automatically
 document.addEventListener('click', function(e){
-    let target = e.target;
-    // Check if clicked element is button or inside button/box
-    let isButton = target.closest('button, .box, .cell, .menu');
-    if(isButton){
-        // Don't trigger on modal close, alert close, nav
-        if(isButton.classList.contains('bx-alert-btn') || isButton.id === 'closeBtn') return;
-        
-        // Track
-        let wasAd = trackButtonClickForAd();
-        // If ad is going to show, we let it show via confirm
-    }
+    let t = e.target;
+    let btn = t.closest('button, .game-card, .box, .cell');
+    if(!btn) return;
+    if(btn.classList.contains('bx-alert-btn') || btn.id==='closeBtn' || btn.closest('#bxAlert')) return;
+    trackButtonClickForAd();
 }, true);
 
-// Also hook into game open to ensure banner refresh in game
-let originalOpenGame = null;
-setTimeout(()=>{
-    // Try to hook game functions if exist
-    if(typeof window.openGame === 'function'){
-        originalOpenGame = window.openGame;
-        window.openGame = function(...args){
-            let result = originalOpenGame.apply(this, args);
-            // Refresh game banner
-            setTimeout(()=>{
-                let gb = document.getElementById('banner-game-play');
-                if(gb) gb.style.display = 'flex';
-            }, 200);
-            return result;
-        }
-    }
-}, 1000);
-
-// Extra reward triggers on game win - call this from your game win logic
 function onGameWinReward(){
     setTimeout(()=>{
-        if(confirm("🏆 You Won! Watch Ad for Double XP ( +100 XP )?")){
-            showRewardedAdFinal(100, "Double XP Unlocked! +100 XP 🎉🏆");
+        if(confirm("🏆 You Won! Watch 10 sec Ad for Double XP (+100 XP)?")){
+            showRewardedAdFinal(100, "Double XP +100 XP 🎉🏆");
         }
     }, 600);
 }
 
-console.log("✅ BrainX Ad System Ready - Zone 294109 - 1st & 4th Click = Rewarded");
-
-/* =========================================
-   🎉 BRAINX SCRIPT COMPLETE
-========================================= */
-
+console.log("✅ BrainX Ad System Ready - Zone 294109 - ONLY 1st & 4th = 10sec Rewarded");
 </script>
 
 </body>
