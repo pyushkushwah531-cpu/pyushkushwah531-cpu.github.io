@@ -1,1 +1,5422 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>BrainX — Train • Think • Improve</title>
+<!-- ==== MONETAG REAL ADS - ZONE 294109 START ==== -->
+<meta name="monetag" content="659e01da3b26a512101db6c102854f">
+<!-- Real OnClick Tag -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="294109" async data-cfasync="false"></script>
+<!-- Banner Tags -->
+<script src="https://nap5k.com/tag.min.js" data-zone="294109" async data-cfasync="false"></script>
+<script src="https://3nbf4.com/act/files/tag.min.js?z=294109" async data-cfasync="false"></script>
+<!-- Rewarded SDK -->
+<script src="//libtl.com/sdk.js" data-zone="294109" data-sdk="show_294109"></script>
+<style>
+.ad-banner-box{margin:14px 0; min-height:110px; background:white; border-radius:18px; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 16px rgba(15,23,42,.06); overflow:hidden; border:1px dashed #E2E8F0;}
+.ad-label{font-size:9px; color:#94A3B8; letter-spacing:.8px; font-weight:700;}
+</style>
+<!-- ==== MONETAG ADS END ==== -->
+
+<style>
+
+/* =========================
+   BRAINX PRO STYLE
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+width:100%;
+min-height:100%;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#F7F8FF;
+color:#1E293B;
+padding-bottom:100px;
+}
+
+button,input{
+font-family:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+.container{
+width:100%;
+max-width:480px;
+margin:auto;
+padding:16px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo-box{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo{
+width:50px;
+height:50px;
+border-radius:15px;
+
+background:
+linear-gradient(135deg,#8B5CF6,#6366F1);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:27px;
+color:white;
+
+box-shadow:
+0 8px 20px rgba(99,102,241,.25);
+}
+
+.h1{
+font-size:20px;
+font-weight:900;
+color:#4F46E5;
+}
+
+.small{
+margin-top:2px;
+font-size:11px;
+color:#94A3B8;
+}
+
+.menu{
+width:44px;
+height:44px;
+
+border:0;
+border-radius:14px;
+
+background:white;
+
+font-size:21px;
+
+box-shadow:
+0 4px 14px rgba(15,23,42,.08);
+}
+
+.menu:active{
+transform:scale(.92);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+margin-top:22px;
+}
+
+.hero h2{
+font-size:24px;
+line-height:1.2;
+font-weight:900;
+}
+
+.hero p{
+margin-top:6px;
+color:#94A3B8;
+font-size:13px;
+}
+
+
+/* =========================
+   XP CARD
+========================= */
+
+.card{
+position:relative;
+overflow:hidden;
+
+margin-top:18px;
+padding:20px;
+
+border-radius:25px;
+
+color:white;
+
+background:
+linear-gradient(135deg,#5B7FFF,#8B5CF6);
+
+box-shadow:
+0 14px 30px rgba(99,102,241,.22);
+}
+
+.card:before{
+content:"";
+position:absolute;
+
+width:150px;
+height:150px;
+
+right:-55px;
+bottom:-65px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.10);
+}
+
+.brain{
+position:absolute;
+right:12px;
+top:8px;
+font-size:52px;
+}
+
+.label{
+font-size:10px;
+letter-spacing:1.2px;
+opacity:.9;
+font-weight:700;
+}
+
+.percent{
+margin:4px 0;
+font-size:42px;
+font-weight:900;
+}
+
+.bar-bg{
+width:100%;
+height:10px;
+
+margin:10px 0;
+
+overflow:hidden;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.28);
+}
+
+.bar{
+width:0%;
+height:100%;
+
+border-radius:20px;
+
+background:white;
+
+transition:width .7s ease;
+}
+
+.footer{
+display:flex;
+justify-content:space-between;
+
+margin-top:8px;
+
+font-size:11px;
+font-weight:700;
+}
+
+
+/* =========================
+   STREAK
+========================= */
+
+.streak{
+display:flex;
+align-items:center;
+
+gap:12px;
+
+margin-top:14px;
+padding:14px;
+
+border-radius:19px;
+
+background:white;
+
+box-shadow:
+0 5px 16px rgba(15,23,42,.07);
+}
+
+.fire-icon{
+width:46px;
+height:46px;
+
+flex-shrink:0;
+
+border-radius:13px;
+
+background:#FFF1E6;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:24px;
+}
+
+
+/* =========================
+   GAME TITLE
+========================= */
+
+.games-title{
+display:flex;
+justify-content:space-between;
+
+margin:25px 0 12px;
+
+font-size:16px;
+font-weight:800;
+}
+
+
+/* =========================
+   GAME GRID
+========================= */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.box{
+position:relative;
+
+padding:14px;
+
+min-height:125px;
+
+border-radius:20px;
+
+background:white;
+
+box-shadow:
+0 5px 16px rgba(15,23,42,.06);
+
+transition:.2s;
+}
+
+.box:active{
+transform:scale(.97);
+}
+
+.icon{
+width:48px;
+height:48px;
+
+margin-bottom:10px;
+
+border-radius:13px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:22px;
+}
+
+.c1{background:#EEF2FF}
+.c2{background:#FFF1E6}
+.c3{background:#F3E8FF}
+.c4{background:#E0FFF1}
+.c5{background:#FEF3C7}
+.c6{background:#E0E7FF}
+
+.box h4{
+font-size:13px;
+}
+
+.box p{
+margin-top:3px;
+font-size:10px;
+color:#94A3B8;
+}
+
+.badge{
+position:absolute;
+
+right:10px;
+top:10px;
+
+padding:4px 7px;
+
+border-radius:10px;
+
+background:#F1F5F9;
+
+color:#6366F1;
+
+font-size:8px;
+font-weight:900;
+}
+
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.nav{
+position:fixed;
+
+left:50%;
+bottom:12px;
+
+transform:translateX(-50%);
+
+width:210px;
+
+display:flex;
+justify-content:space-around;
+
+padding:10px;
+
+border-radius:25px;
+
+background:white;
+
+box-shadow:
+0 10px 30px rgba(15,23,42,.16);
+
+z-index:500;
+}
+
+.nav button{
+border:0;
+background:none;
+
+color:#94A3B8;
+
+font-size:11px;
+font-weight:800;
+
+line-height:1.5;
+}
+
+.nav button.active{
+color:#4F46E5;
+}
+
+
+/* =========================
+   GAME MODAL
+========================= */
+
+.modal{
+display:none;
+
+position:fixed;
+inset:0;
+
+padding:15px;
+
+background:rgba(15,23,42,.55);
+
+backdrop-filter:blur(5px);
+
+z-index:2000;
+
+align-items:center;
+justify-content:center;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modal-inner{
+width:100%;
+max-width:380px;
+
+max-height:90vh;
+
+display:flex;
+flex-direction:column;
+
+overflow:hidden;
+
+border-radius:25px;
+
+background:white;
+
+box-shadow:
+0 25px 70px rgba(0,0,0,.25);
+}
+
+.modal-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:8px;
+
+padding:14px;
+
+background:#F8FAFF;
+
+border-bottom:1px solid #EEF2F7;
+}
+
+.modal-body{
+padding:18px;
+
+overflow:auto;
+
+flex:1;
+
+text-align:center;
+}
+
+.modal-bottom{
+display:flex;
+gap:8px;
+
+padding:12px;
+
+border-top:1px solid #EEF2F7;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+border:0;
+
+padding:12px;
+
+border-radius:13px;
+
+font-size:13px;
+font-weight:800;
+}
+
+.btn1{
+background:#F1F5F9;
+color:#334155;
+}
+
+.btn2{
+background:#FFF1E6;
+color:#EA580C;
+}
+
+.btn3{
+background:
+linear-gradient(135deg,#6366F1,#8B5CF6);
+
+color:white;
+
+box-shadow:
+0 6px 15px rgba(99,102,241,.20);
+}
+
+.btn3:disabled{
+opacity:.4;
+}
+
+
+/* =========================
+   GAME CELLS
+========================= */
+
+.grid2{
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:8px;
+
+margin-top:12px;
+}
+
+.cell{
+width:100%;
+
+aspect-ratio:1;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:#F1F5F9;
+
+font-size:20px;
+font-weight:800;
+
+transition:.15s;
+
+user-select:none;
+}
+
+.cell:active{
+transform:scale(.93);
+}
+
+.cell.on{
+background:#6366F1!important;
+color:white;
+
+box-shadow:
+0 5px 12px rgba(99,102,241,.25);
+}
+
+.input{
+width:100%;
+
+margin-top:12px;
+
+padding:13px;
+
+border:2px solid #E2E8F0;
+
+border-radius:13px;
+
+outline:none;
+
+font-size:14px;
+
+text-align:center;
+}
+
+
+/* =========================
+   CUSTOM ALERT
+========================= */
+
+.bx-alert-overlay{
+display:none;
+
+position:fixed;
+inset:0;
+
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+background:rgba(15,23,42,.52);
+
+backdrop-filter:blur(6px);
+
+z-index:9999;
+}
+
+.bx-alert-overlay.show{
+display:flex;
+}
+
+.bx-alert{
+width:100%;
+max-width:335px;
+
+padding:24px 20px 18px;
+
+text-align:center;
+
+border-radius:26px;
+
+background:white;
+
+box-shadow:
+0 25px 70px rgba(0,0,0,.25);
+}
+
+.bx-alert-icon{
+width:64px;
+height:64px;
+
+margin:0 auto 12px;
+
+border-radius:20px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:30px;
+
+background:
+linear-gradient(135deg,#6366F1,#8B5CF6);
+
+box-shadow:
+0 8px 20px rgba(99,102,241,.25);
+}
+
+.bx-alert-title{
+font-size:18px;
+font-weight:900;
+color:#1E293B;
+}
+
+.bx-alert-message{
+margin-top:7px;
+
+font-size:13px;
+line-height:1.55;
+
+color:#64748B;
+
+white-space:pre-line;
+}
+
+.bx-alert-btn{
+width:100%;
+
+margin-top:18px;
+
+padding:13px;
+
+border:0;
+
+border-radius:14px;
+
+color:white;
+
+font-size:14px;
+font-weight:900;
+
+background:
+linear-gradient(135deg,#6366F1,#8B5CF6);
+}
+
+
+/* =========================
+   PRO DRAWER
+========================= */
+
+.drawer{
+display:none;
+
+position:fixed;
+inset:0;
+
+z-index:3000;
+}
+
+.drawer.show{
+display:block;
+}
+
+.drawer-bg{
+position:absolute;
+inset:0;
+
+background:rgba(15,23,42,.45);
+
+backdrop-filter:blur(3px);
+}
+
+.drawer-box{
+position:absolute;
+
+right:0;
+top:0;
+
+width:82%;
+max-width:340px;
+
+height:100%;
+
+padding:20px;
+
+overflow:auto;
+
+background:#F8FAFF;
+
+box-shadow:
+-10px 0 35px rgba(0,0,0,.12);
+}
+
+
+/* =========================
+   DRAWER HEADER
+========================= */
+
+.drawer-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding-bottom:18px;
+
+border-bottom:1px solid #E2E8F0;
+}
+
+.drawer-brand{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.drawer-logo{
+width:45px;
+height:45px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:14px;
+
+background:
+linear-gradient(135deg,#6366F1,#8B5CF6);
+
+font-size:23px;
+}
+
+.drawer-title{
+font-size:18px;
+font-weight:900;
+}
+
+.drawer-sub{
+margin-top:2px;
+
+font-size:10px;
+
+color:#94A3B8;
+}
+
+
+/* =========================
+   SOCIAL SECTION
+========================= */
+
+.follow-title{
+margin-top:20px;
+
+font-size:11px;
+
+color:#94A3B8;
+
+font-weight:800;
+
+text-transform:uppercase;
+
+letter-spacing:1px;
+}
+
+.social-card{
+display:flex;
+align-items:center;
+
+gap:12px;
+
+width:100%;
+
+margin-top:10px;
+
+padding:13px;
+
+border:0;
+
+border-radius:16px;
+
+background:white;
+
+box-shadow:
+0 4px 12px rgba(15,23,42,.06);
+
+text-align:left;
+}
+
+.social-icon{
+width:43px;
+height:43px;
+
+flex-shrink:0;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:13px;
+
+font-size:20px;
+}
+
+.telegram{
+background:#E0F2FE;
+}
+
+.youtube{
+background:#FEE2E2;
+}
+
+.instagram{
+background:#FCE7F3;
+}
+
+.social-name{
+font-size:13px;
+font-weight:800;
+}
+
+.social-desc{
+margin-top:3px;
+
+font-size:10px;
+
+color:#94A3B8;
+}
+
+.arrow{
+margin-left:auto;
+
+color:#94A3B8;
+
+font-size:18px;
+}
+
+
+/* =========================
+   DRAWER MENU ITEMS
+========================= */
+
+.mitem{
+width:100%;
+
+display:flex;
+align-items:center;
+
+gap:11px;
+
+margin-top:10px;
+
+padding:13px;
+
+border:0;
+
+border-radius:15px;
+
+background:white;
+
+box-shadow:
+0 4px 12px rgba(15,23,42,.05);
+
+color:#334155;
+
+font-size:12px;
+font-weight:800;
+
+text-align:left;
+}
+
+
+/* =========================
+   DRAWER XP
+========================= */
+
+.drawer-xp{
+margin-top:18px;
+
+padding:17px;
+
+text-align:center;
+
+color:white;
+
+border-radius:18px;
+
+background:
+linear-gradient(135deg,#6366F1,#8B5CF6);
+
+box-shadow:
+0 10px 25px rgba(99,102,241,.20);
+}
+
+.drawer-xp-label{
+font-size:10px;
+opacity:.85;
+}
+
+.drawer-xp-value{
+margin-top:3px;
+
+font-size:27px;
+font-weight:900;
+}
+
+
+/* =========================
+   MAZE BUTTON
+========================= */
+
+.maze-btn{
+width:55px;
+height:42px;
+
+border:0;
+
+border-radius:12px;
+
+background:#F1F5F9;
+
+font-size:20px;
+font-weight:900;
+
+color:#475569;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pop{
+from{
+opacity:0;
+transform:scale(.9);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+/* =========================================
+   NEXT LEVEL — PRO BUTTON
+========================================= */
+
+#nextBtn{
+    width:100%;
+    min-height:52px;
+    margin-top:12px;
+
+    border:none;
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #4F46E5
+    );
+
+    color:#FFFFFF;
+
+    font-size:16px;
+    font-weight:900;
+
+    letter-spacing:.3px;
+
+    box-shadow:
+        0 8px 20px rgba(37,99,235,.25);
+
+    cursor:pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        opacity .18s ease;
+}
+
+
+/* Press effect */
+
+#nextBtn:active{
+    transform:scale(.97);
+
+    box-shadow:
+        0 4px 10px rgba(37,99,235,.20);
+}
+
+
+/* Disabled */
+
+#nextBtn:disabled{
+    background:
+        linear-gradient(
+            135deg,
+            #CBD5E1,
+            #94A3B8
+        );
+
+    color:#F8FAFC;
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
+    transform:none;
+}
+
+
+/* Enabled hover */
+
+#nextBtn:not(:disabled):hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37,99,235,.32);
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+<div class="logo-box">
+
+<div class="logo">
+🧠
+</div>
+
+<div>
+
+<div class="h1">
+BrainX
+</div>
+
+<div class="small">
+Train • Think • Improve
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="menu"
+onclick="openDrawer()">
+
+☰
+
+</button>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<div class="hero">
+
+<h2>
+Ready to challenge yourself? 🚀
+</h2>
+
+<p>
+Give your mind a fun daily workout.
+</p>
+
+</div>
+
+
+<!-- =========================
+     XP CARD
+========================= -->
+
+
+<!-- BANNER AD - HOME TOP -->
+<div class="ad-banner-box" id="banner-home-top"><span class="ad-label">AD • BrainX Home</span></div>
+<div class="card">
+
+<div class="brain">
+🧠
+</div>
+
+<div class="label">
+TODAY'S BRAIN TRAINING
+</div>
+
+<div
+class="percent"
+id="pct">
+
+0%
+
+</div>
+
+<div class="bar-bg">
+
+<div
+class="bar"
+id="bar">
+</div>
+
+</div>
+
+
+<div class="footer">
+
+<span id="lvl">
+Level 1
+</span>
+
+<span id="xp">
+0 XP
+</span>
+
+<span id="star">
+⭐ 0
+</span>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     STREAK
+========================= -->
+
+<div
+class="streak"
+onclick="claimStreak()">
+
+<div class="fire-icon">
+🔥
+</div>
+
+<div>
+
+<div
+style="font-weight:800;font-size:14px"
+id="stText">
+
+1 Day Streak!
+
+</div>
+
+<div
+style="font-size:11px;color:#94A3B8"
+id="stSub">
+
+Tap to claim +50 XP
+
+</div>
+
+</div>
+
+
+<div
+style="
+margin-left:auto;
+background:#FFF1E6;
+padding:5px 10px;
+border-radius:12px;
+font-size:11px;
+font-weight:900;
+color:#EA580C"
+id="stNum">
+
+🔥1
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     GAME TITLE
+========================= -->
+
+
+<!-- BANNER AD - HOME MID -->
+<div class="ad-banner-box" id="banner-home-mid"><span class="ad-label">AD • Continue Playing</span></div>
+<div class="games-title">
+
+<span>
+🎮 Brain Games
+</span>
+
+<span
+style="
+color:#8B5CF6;
+font-size:12px">
+
+6 Games
+
+</span>
+
+</div>
+
+
+<!-- =========================
+     GAME GRID
+========================= -->
+
+<div class="grid">
+
+
+<div
+class="box"
+onclick="startGame('memory')">
+
+<span
+class="badge"
+id="b-memory">
+
+LVL 1
+
+</span>
+
+<div class="icon c1">
+🧠
+</div>
+
+<h4>
+Memory Match
+</h4>
+
+<p>
+Train memory
+</p>
+
+</div>
+
+
+<div
+class="box"
+onclick="startGame('focus')">
+
+<span
+class="badge"
+id="b-focus">
+
+LVL 1
+
+</span>
+
+<div class="icon c2">
+🎯
+</div>
+
+<h4>
+Focus Target
+</h4>
+
+<p>
+Test attention
+</p>
+
+</div>
+
+
+<div
+class="box"
+onclick="startGame('logic')">
+
+<span
+class="badge"
+id="b-logic">
+
+LVL 1
+
+</span>
+
+<div class="icon c3">
+🔢
+</div>
+
+<h4>
+Number Logic
+</h4>
+
+<p>
+Solve puzzle
+</p>
+
+</div>
+<div
+class="box"
+onclick="startGame('color')">
+
+<span
+class="badge"
+id="b-color">
+
+LVL 1
+
+</span>
+
+<div class="icon c7">
+🎨
+</div>
+
+<h4>
+Color Match
+</h4>
+
+<p>
+Match the color
+</p>
+
+</div>
+
+<div
+class="box"
+onclick="startGame('reaction')">
+
+<span
+class="badge"
+id="b-reaction">
+
+LVL 1
+
+</span>
+
+<div class="icon c4">
+⚡
+</div>
+
+<h4>
+Reaction Tap
+</h4>
+
+<p>
+Speed test
+</p>
+
+</div>
+
+
+<div
+class="box"
+onclick="startGame('word')">
+
+<span
+class="badge"
+id="b-word">
+
+LVL 1
+
+</span>
+
+<div class="icon c5">
+🔤
+</div>
+
+<h4>
+Word Power
+</h4>
+
+<p>
+Vocab boost
+</p>
+
+</div>
+
+
+<div
+class="box"
+onclick="startGame('maze')">
+
+<span
+class="badge"
+id="b-maze">
+
+LVL 1
+
+</span>
+
+<div class="icon c6">
+🗺️
+</div>
+
+<h4>
+Mind Maze
+</h4>
+
+<p>
+Find path
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
+
+<!-- BANNER AD - STICKY BOTTOM -->
+<div id="sticky-banner" style="position:fixed; bottom:70px; left:50%; transform:translateX(-50%); width:95%; max-width:480px; min-height:60px; background:white; border-radius:14px; box-shadow:0 8px 25px rgba(0,0,0,.15); z-index:400; display:flex; align-items:center; justify-content:center; border:1px solid #E2E8F0;">
+    <span class="ad-label">AD • BrainX • 294109</span>
+</div>
+
+<div class="nav">
+
+<button
+class="active"
+onclick="location.reload()">
+
+🏠
+<br>
+Home
+
+</button>
+
+
+<button
+onclick="showProgress()">
+
+📊
+<br>
+Progress
+
+</button>
+
+</div>
+
+
+<!-- =========================
+     GAME MODAL
+========================= -->
+
+<div
+class="modal"
+id="modal">
+
+<div class="modal-inner">
+
+
+<div class="modal-top">
+
+<button
+class="btn btn1"
+onclick="closeModal()">
+
+← Back
+
+</button>
+
+
+<span
+id="mtitle"
+style="font-weight:900">
+
+GAME
+
+</span>
+
+
+<span
+id="mlevel"
+style="
+background:#EEF2FF;
+color:#6366F1;
+padding:5px 8px;
+border-radius:10px;
+font-size:10px;
+font-weight:900">
+
+LVL 1
+
+</span>
+
+</div>
+
+
+<div
+class="modal-body"
+id="mbody">
+
+</div>
+
+
+<div class="modal-bottom">
+
+<button
+class="btn btn2"
+onclick="restartGame()">
+
+↻ Restart
+
+</button>
+
+
+<button
+    id="nextBtn"
+    onclick="nextLevel()">
+    Next Level →
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CUSTOM ALERT
+========================= -->
+
+<div
+class="bx-alert-overlay"
+id="bxAlert">
+
+<div class="bx-alert">
+
+<div
+class="bx-alert-icon"
+id="bxAlertIcon">
+
+🧠
+
+</div>
+
+
+<div
+class="bx-alert-title"
+id="bxAlertTitle">
+
+BrainX
+
+</div>
+
+
+<div
+class="bx-alert-message"
+id="bxAlertMessage">
+
+Message
+
+</div>
+
+
+<button
+class="bx-alert-btn"
+onclick="closeBXAlert()">
+
+OK
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PRO DRAWER
+========================= -->
+
+<div
+class="drawer"
+id="drawer">
+
+
+<div
+class="drawer-bg"
+onclick="closeDrawer()">
+</div>
+
+
+<div class="drawer-box">
+
+
+<div class="drawer-head">
+
+<div class="drawer-brand">
+
+<div class="drawer-logo">
+🧠
+</div>
+
+<div>
+
+<div class="drawer-title">
+BrainX
+</div>
+
+<div class="drawer-sub">
+Train your brain daily
+</div>
+
+</div>
+
+</div>
+
+
+<button
+onclick="closeDrawer()"
+style="
+border:0;
+background:#EEF2FF;
+color:#6366F1;
+width:36px;
+height:36px;
+border-radius:12px;
+font-size:18px">
+
+✕
+
+</button>
+
+</div>
+
+
+<div class="follow-title">
+Connect With Us
+</div>
+
+
+<!-- TELEGRAM -->
+
+<button
+class="social-card"
+onclick="openLink('https://t.me/gyaanbrain_ai')">
+
+<div class="social-icon telegram">
+✈️
+</div>
+
+<div>
+
+<div class="social-name">
+Telegram Channel
+</div>
+
+<div class="social-desc">
+Daily updates & brain challenges
+</div>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</button>
+
+
+<!-- YOUTUBE -->
+
+<button
+class="social-card"
+onclick="openLink('https://youtube.com/@gyaanbrain')">
+
+<div class="social-icon youtube">
+▶️
+</div>
+
+<div>
+
+<div class="social-name">
+YouTube Channel
+</div>
+
+<div class="social-desc">
+Watch learning videos
+</div>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</button>
+
+
+<!-- INSTAGRAM -->
+
+<button
+class="social-card"
+onclick="openLink('https://instagram.com/gyaanbrain_ai')">
+
+<div class="social-icon instagram">
+📸
+</div>
+
+<div>
+
+<div class="social-name">
+Instagram
+</div>
+
+<div class="social-desc">
+Follow @gyaanbrain_ai
+</div>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</button>
+
+
+<!-- SHARE -->
+
+<button
+class="mitem"
+onclick="shareApp()">
+
+🔗
+
+<span>
+Share BrainX
+</span>
+
+</button>
+
+
+<!-- PROGRESS -->
+
+<button
+class="mitem"
+onclick="closeDrawer();showProgress()">
+
+📊
+
+<span>
+My Progress
+</span>
+
+</button>
+
+
+<!-- RESET -->
+
+<button
+class="mitem"
+onclick="resetProgress()">
+
+🔄
+
+<span>
+Reset Progress
+</span>
+
+</button>
+
+
+<!-- XP -->
+
+<div class="drawer-xp">
+
+<div class="drawer-xp-label">
+TOTAL EXPERIENCE
+</div>
+
+<div
+class="drawer-xp-value"
+id="dxp">
+
+0 XP
+
+</div>
+
+</div>
+
+
+<button
+class="mitem"
+onclick="showAbout()"
+style="justify-content:center;margin-top:14px">
+
+ℹ️ About BrainX
+
+</button>
+
+
+</div>
+
+</div>
+<script>
+
+/* =========================================
+   BRAINX — PART 2
+   MEMORY + FOCUS + NUMBER LOGIC
+========================================= */
+
+
+/* =========================================
+   DATA
+========================================= */
+
+let xp = Number(localStorage.getItem("bx_xp")) || 0;
+
+let levels = JSON.parse(
+    localStorage.getItem("bx_levels") ||
+    '{"memory":1,"focus":1,"logic":1,"reaction":1,"word":1,"maze":1}'
+);
+
+let streak =
+    Number(localStorage.getItem("bx_streak")) || 1;
+
+let streakClaimed =
+    localStorage.getItem("bx_streak_claimed") === "yes";
+
+let currentGame = "";
+let gameTimer = null;
+
+
+/* =========================================
+   SAVE DATA
+========================================= */
+
+function saveData(){
+
+    localStorage.setItem(
+        "bx_xp",
+        xp
+    );
+
+    localStorage.setItem(
+        "bx_levels",
+        JSON.stringify(levels)
+    );
+
+    localStorage.setItem(
+        "bx_streak",
+        streak
+    );
+
+    updateUI();
+}
+
+
+/* =========================================
+   XP / LEVEL
+========================================= */
+
+function getGlobalLevel(){
+
+    return Math.max(
+        1,
+        Math.floor(xp / 100) + 1
+    );
+
+}
+
+
+function addXP(amount){
+
+    xp += amount;
+
+    saveData();
+
+    showBXAlert(
+        "+" + amount + " XP earned!",
+        "Excellent! 🎉",
+        "⚡"
+    );
+
+}
+
+
+/* =========================================
+   UI UPDATE
+========================================= */
+
+function updateUI(){
+
+    let level =
+        Math.floor(xp / 100) + 1;
+
+    let progress =
+        xp % 100;
+
+    document.getElementById("xp").innerText =
+        xp + " XP";
+
+    document.getElementById("lvl").innerText =
+        "Level " + level;
+
+    document.getElementById("pct").innerText =
+        progress + "%";
+
+    document.getElementById("bar").style.width =
+        progress + "%";
+
+    document.getElementById("star").innerText =
+        "⭐ " + Math.floor(xp / 50);
+
+
+    document.getElementById("dxp").innerText =
+        xp + " XP";
+
+
+    document.getElementById("stNum").innerText =
+        "🔥" + streak;
+
+    document.getElementById("stText").innerText =
+        streak + " Day Streak!";
+
+
+    document.getElementById("stSub").innerText =
+        streakClaimed
+        ? "Today's reward claimed ✓"
+        : "Tap to claim +50 XP";
+
+
+    Object.keys(levels).forEach(function(game){
+
+        let el =
+            document.getElementById(
+                "b-" + game
+            );
+
+        if(el){
+
+            el.innerText =
+                "LVL " + levels[game];
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   CUSTOM ALERT
+========================================= */
+
+function showBXAlert(
+    message,
+    title = "BrainX",
+    icon = "🧠"
+){
+
+    document.getElementById(
+        "bxAlertTitle"
+    ).innerText = title;
+
+    document.getElementById(
+        "bxAlertMessage"
+    ).innerText = message;
+
+    document.getElementById(
+        "bxAlertIcon"
+    ).innerText = icon;
+
+    document.getElementById(
+        "bxAlert"
+    ).classList.add("show");
+
+}
+
+
+function closeBXAlert(){
+
+    document.getElementById(
+        "bxAlert"
+    ).classList.remove("show");
+
+}
+
+
+/* =========================================
+   STREAK
+========================================= */
+
+function claimStreak(){
+
+    if(streakClaimed){
+
+        showBXAlert(
+            "You have already claimed today's reward.\nCome back tomorrow! 🔥",
+            "Already Claimed",
+            "🔥"
+        );
+
+        return;
+    }
+
+
+    streakClaimed = true;
+
+    localStorage.setItem(
+        "bx_streak_claimed",
+        "yes"
+    );
+
+    xp += 50;
+
+    saveData();
+
+
+    showBXAlert(
+        "50 XP has been added to your BrainX account!",
+        "Daily Reward 🎁",
+        "🔥"
+    );
+
+}
+
+
+/* =========================================
+   GAME START
+========================================= */
+
+function startGame(game){
+
+    currentGame = game;
+
+    document.getElementById(
+        "modal"
+    ).classList.add("show");
+
+    document.getElementById(
+        "nextBtn"
+    ).disabled = true;
+
+
+    if(game === "memory"){
+
+        startMemory();
+
+    }
+
+    else if(game === "focus"){
+
+        startFocus();
+
+    }
+
+    else if(game === "logic"){
+
+        startLogic();
+
+    }
+else if(game === "color"){
+
+    startColorMatch();
+
+}
+    else{
+
+        showBXAlert(
+            "This game will be activated in Part 3.",
+            "Coming Soon 🚀",
+            "🔒"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closeModal(){
+
+    clearInterval(gameTimer);
+
+    clearTimeout(gameTimer);
+
+    document.getElementById(
+        "modal"
+    ).classList.remove("show");
+
+}
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+function restartGame(){
+
+    if(!currentGame)
+        return;
+
+    startGame(currentGame);
+
+}
+
+  
+/* =========================================
+   NEXT LEVEL
+========================================= */
+
+function nextLevel(){
+
+    if(!currentGame)
+        return;
+
+
+    levels[currentGame] =
+        levels[currentGame] + 1;
+
+
+    saveData();
+
+
+    showBXAlert(
+        "Level " +
+        levels[currentGame] +
+        " unlocked! 🔥",
+        "Level Up!",
+        "🚀"
+    );
+
+
+    setTimeout(function(){
+
+        closeBXAlert();
+
+        startGame(currentGame);
+
+    },900);
+
+}
+
+
+/* =========================================
+   GAME COMPLETE
+========================================= */
+
+function gameComplete(
+    amount = 20
+){
+
+    document.getElementById(
+        "nextBtn"
+    ).disabled = false;
+
+
+    xp += amount;
+
+    saveData();
+
+
+    showBXAlert(
+        "You completed the challenge!\n+" +
+        amount +
+        " XP added.",
+        "Great Job! 🧠",
+        "🎉"
+    );
+
+}
+
+
+/* =========================================
+   MEMORY MATCH
+========================================= */
+
+let memoryCards = [];
+let memoryOpen = [];
+let memoryMatched = 0;
+let memoryLock = false;
+
+
+function startMemory(){
+
+    clearInterval(gameTimer);
+
+    let level =
+        levels.memory;
+
+
+    document.getElementById(
+        "mtitle"
+    ).innerText =
+        "Memory Match";
+
+    document.getElementById(
+        "mlevel"
+    ).innerText =
+        "LVL " + level;
+
+
+    let symbols = [
+        "🍎",
+        "🚀",
+        "⭐",
+        "🧠",
+        "🔥",
+        "🎯",
+        "⚡",
+        "🌟"
+    ];
+
+
+    let pairCount =
+        Math.min(
+            2 + Math.floor((level - 1) / 2),
+            8
+        );
+
+
+    memoryCards =
+        symbols
+        .slice(0,pairCount)
+        .concat(
+            symbols.slice(0,pairCount)
+        );
+
+
+    memoryCards.sort(
+        () => Math.random() - 0.5
+    );
+
+
+    memoryOpen = [];
+
+    memoryMatched = 0;
+
+    memoryLock = false;
+
+
+    let html = "";
+
+    html +=
+        '<div style="font-size:13px;color:#64748B;margin-bottom:10px">' +
+        "Remember the matching pairs 🧠" +
+        "</div>";
+
+
+    html +=
+        '<div class="grid2" id="memoryGrid">';
+
+
+    memoryCards.forEach(
+        function(symbol,index){
+
+            html +=
+                '<div class="cell" ' +
+                'id="mc-' + index + '" ' +
+                'onclick="memoryClick(' +
+                index +
+                ')">' +
+                "?" +
+                "</div>";
+
+        }
+    );
+
+
+    html += "</div>";
+
+
+    document.getElementById(
+        "mbody"
+    ).innerHTML = html;
+
+}
+
+
+/* =========================================
+   MEMORY CLICK
+========================================= */
+
+function memoryClick(index){
+
+    if(memoryLock)
+        return;
+
+
+    let cell =
+        document.getElementById(
+            "mc-" + index
+        );
+
+
+    if(!cell)
+        return;
+
+
+    if(
+        memoryOpen.includes(index) ||
+        cell.classList.contains("matched")
+    ){
+
+        return;
+
+    }
+
+
+    cell.innerText =
+        memoryCards[index];
+
+    cell.classList.add("on");
+
+
+    memoryOpen.push(index);
+
+
+    if(memoryOpen.length === 2){
+
+        memoryLock = true;
+
+
+        let a =
+            memoryOpen[0];
+
+        let b =
+            memoryOpen[1];
+
+
+        if(
+            memoryCards[a] ===
+            memoryCards[b]
+        ){
+
+            document
+                .getElementById("mc-" + a)
+                .classList.add("matched");
+
+
+            document
+                .getElementById("mc-" + b)
+                .classList.add("matched");
+
+
+            memoryMatched++;
+
+            memoryOpen = [];
+
+            memoryLock = false;
+
+
+            if(
+                memoryMatched ===
+                memoryCards.length / 2
+            ){
+
+                gameComplete(
+                    20 + levels.memory * 5
+                );
+
+            }
+
+        }
+
+        else{
+
+            setTimeout(
+                function(){
+
+                    let first =
+                        document.getElementById(
+                            "mc-" + a
+                        );
+
+                    let second =
+                        document.getElementById(
+                            "mc-" + b
+                        );
+
+
+                    if(first){
+
+                        first.innerText = "?";
+
+                        first.classList.remove(
+                            "on"
+                        );
+
+                    }
+
+
+                    if(second){
+
+                        second.innerText = "?";
+
+                        second.classList.remove(
+                            "on"
+                        );
+
+                    }
+
+
+                    memoryOpen = [];
+
+                    memoryLock = false;
+
+                },
+                650
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================
+   FOCUS TARGET
+========================================= */
+
+let focusScore = 0;
+let focusTotal = 0;
+let focusActive = false;
+let focusTimeout = null;
+
+
+function startFocus(){
+
+    clearInterval(gameTimer);
+
+    clearTimeout(focusTimeout);
+
+
+    let level =
+        levels.focus;
+
+
+    document.getElementById(
+        "mtitle"
+    ).innerText =
+        "Focus Target";
+
+
+    document.getElementById(
+        "mlevel"
+    ).innerText =
+        "LVL " + level;
+
+
+    focusScore = 0;
+
+
+    focusTotal =
+        Math.min(
+            5 + level,
+            12
+        );
+
+
+    focusActive = true;
+
+
+    let html = "";
+
+
+    html +=
+        '<div style="font-size:13px;color:#64748B">' +
+        "Tap only the 🎯 target!" +
+        "</div>";
+
+
+    html +=
+        '<div style="' +
+        'margin:15px auto;' +
+        'font-size:15px;' +
+        'font-weight:900;' +
+        '" id="focusStatus">' +
+        "0 / " + focusTotal +
+        "</div>";
+
+
+    html +=
+        '<div id="focusArea" style="' +
+        'height:260px;' +
+        'position:relative;' +
+        'border-radius:20px;' +
+        'background:#F8FAFC;' +
+        'overflow:hidden;' +
+        'border:2px dashed #E2E8F0;' +
+        '">' +
+        "</div>";
+
+
+    document.getElementById(
+        "mbody"
+    ).innerHTML = html;
+
+
+    nextFocusTarget();
+
+}
+
+
+/* =========================================
+   NEXT TARGET
+========================================= */
+
+function nextFocusTarget(){
+
+    if(!focusActive)
+        return;
+
+
+    let area =
+        document.getElementById(
+            "focusArea"
+        );
+
+
+    if(!area)
+        return;
+
+
+    area.innerHTML = "";
+
+
+    let target =
+        document.createElement("button");
+
+
+    target.innerText = "🎯";
+
+
+    target.style.position =
+        "absolute";
+
+
+    target.style.border =
+        "0";
+
+
+    target.style.background =
+        "transparent";
+
+
+    target.style.fontSize =
+        Math.max(
+            24,
+            42 - levels.focus * 2
+        ) + "px";
+
+
+    let maxX =
+        Math.max(
+            5,
+            area.clientWidth - 55
+        );
+
+
+    let maxY =
+        Math.max(
+            5,
+            area.clientHeight - 55
+        );
+
+
+    target.style.left =
+        Math.random() * maxX + "px";
+
+
+    target.style.top =
+        Math.random() * maxY + "px";
+
+
+    target.onclick =
+        function(){
+
+            focusScore++;
+
+
+            document.getElementById(
+                "focusStatus"
+            ).innerText =
+                focusScore +
+                " / " +
+                focusTotal;
+
+
+            if(
+                focusScore >=
+                focusTotal
+            ){
+
+                focusActive = false;
+
+                area.innerHTML = "";
+
+                gameComplete(
+                    25 + levels.focus * 5
+                );
+
+                return;
+
+            }
+
+
+            nextFocusTarget();
+
+        };
+
+
+    area.appendChild(target);
+
+
+    focusTimeout =
+        setTimeout(
+            function(){
+
+                if(!focusActive)
+                    return;
+
+
+                focusActive = false;
+
+                area.innerHTML = "";
+
+
+                showBXAlert(
+                    "You were too slow!\nTry again and improve your focus.",
+                    "Focus Failed",
+                    "🎯"
+                );
+
+            },
+            Math.max(
+                800,
+                1800 - levels.focus * 100
+            )
+        );
+
+}
+
+
+/* =========================================
+   NUMBER LOGIC — 20 PATTERNS
+========================================= */
+
+let logicAnswer = 0;
+
+function startLogic(){
+
+    clearInterval(gameTimer);
+
+    let level = levels.logic;
+
+    document.getElementById("mtitle").innerText =
+        "Number Logic";
+
+    document.getElementById("mlevel").innerText =
+        "LVL " + level;
+
+
+    /* -----------------------------------------
+       DIFFICULTY
+    ----------------------------------------- */
+
+    let maxType = 20;
+
+    if(level <= 3){
+        maxType = 8;
+    }
+    else if(level <= 6){
+        maxType = 14;
+    }
+    else{
+        maxType = 20;
+    }
+
+
+    let type =
+        Math.floor(Math.random() * maxType) + 1;
+
+
+    let nums = [];
+
+    let start =
+        Math.floor(Math.random() * 8) + 2;
+
+
+    /* =========================================
+       1. CONSTANT ADDITION
+      ========================================= */
+
+    if(type === 1){
+
+        let step =
+            Math.floor(Math.random() * 8) + 2;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(
+                start + step * i
+            );
+
+        }
+
+        logicAnswer =
+            start + step * 4;
+    }
+
+
+    /* =========================================
+       2. CONSTANT SUBTRACTION
+    ========================================= */
+
+    else if(type === 2){
+
+        let first =
+            Math.floor(Math.random() * 30) + 25;
+
+        let step =
+            Math.floor(Math.random() * 5) + 2;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(
+                first - step * i
+            );
+
+        }
+
+        logicAnswer =
+            first - step * 4;
+    }
+
+
+    /* =========================================
+       3. MULTIPLICATION
+    ========================================= */
+
+    else if(type === 3){
+
+        let multiplier =
+            Math.floor(Math.random() * 2) + 2;
+
+        let n = start;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n *= multiplier;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       4. DIVISION
+    ========================================= */
+
+    else if(type === 4){
+
+        let divisor = 2;
+
+        let answer =
+            Math.floor(Math.random() * 5) + 2;
+
+        let first =
+            answer *
+            divisor *
+            divisor *
+            divisor *
+            divisor;
+
+        let n = first;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n /= divisor;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       5. INCREASING ADDITION
+       +2 +4 +6 +8
+    ========================================= */
+
+    else if(type === 5){
+
+        let n = start;
+
+        for(let i=1;i<=4;i++){
+
+            nums.push(n);
+
+            n += i * 2;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       6. ODD INCREMENT
+       +3 +5 +7 +9
+    ========================================= */
+
+    else if(type === 6){
+
+        let n = start;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n += 3 + i * 2;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       7. EVEN NUMBERS
+    ========================================= */
+
+    else if(type === 7){
+
+        let first = 2;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(
+                first + i * 2
+            );
+
+        }
+
+        logicAnswer =
+            first + 8;
+    }
+
+
+    /* =========================================
+       8. ODD NUMBERS
+    ========================================= */
+
+    else if(type === 8){
+
+        let first = 1;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(
+                first + i * 2
+            );
+
+        }
+
+        logicAnswer =
+            first + 8;
+    }
+
+
+    /* =========================================
+       9. SQUARE NUMBERS
+    ========================================= */
+
+    else if(type === 9){
+
+        let base =
+            Math.floor(Math.random() * 4) + 1;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(
+                (base + i) *
+                (base + i)
+            );
+
+        }
+
+        logicAnswer =
+            (base + 4) *
+            (base + 4);
+    }
+
+
+    /* =========================================
+       10. CUBE NUMBERS
+    ========================================= */
+
+    else if(type === 10){
+
+        let base = 1;
+
+        for(let i=0;i<4;i++){
+
+            let n = base + i;
+
+            nums.push(
+                n * n * n
+            );
+        }
+
+        logicAnswer = 125;
+    }
+
+
+    /* =========================================
+       11. FIBONACCI
+    ========================================= */
+
+    else if(type === 11){
+
+        let a = 2;
+        let b = 3;
+
+        nums.push(a);
+        nums.push(b);
+
+        for(let i=0;i<2;i++){
+
+            let c = a + b;
+
+            nums.push(c);
+
+            a = b;
+            b = c;
+        }
+
+        logicAnswer = a + b;
+    }
+
+
+    /* =========================================
+       12. ×2 + 1
+    ========================================= */
+
+    else if(type === 12){
+
+        let n = start;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n = n * 2 + 1;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       13. ×2 - 1
+    ========================================= */
+
+    else if(type === 13){
+
+        let n = start;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n = n * 2 - 1;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       14. ×3 + 1
+    ========================================= */
+
+    else if(type === 14){
+
+        let n = start;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n = n * 3 + 1;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       15. +3 , ×2
+    ========================================= */
+
+    else if(type === 15){
+
+        let n = start;
+
+        nums.push(n);
+
+        n += 3;
+        nums.push(n);
+
+        n *= 2;
+        nums.push(n);
+
+        n += 3;
+        nums.push(n);
+
+        logicAnswer =
+            n * 2;
+    }
+
+
+    /* =========================================
+       16. ×2 , +3
+    ========================================= */
+
+    else if(type === 16){
+
+        let n = start;
+
+        nums.push(n);
+
+        n *= 2;
+        nums.push(n);
+
+        n += 3;
+        nums.push(n);
+
+        n *= 2;
+        nums.push(n);
+
+        logicAnswer =
+            n + 3;
+    }
+
+
+    /* =========================================
+       17. INCREASING DIFFERENCE
+       +2 +3 +4 +5
+    ========================================= */
+
+    else if(type === 17){
+
+        let n = start;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n += i + 2;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       18. DECREASING DIFFERENCE
+       -2 -3 -4 -5
+    ========================================= */
+
+    else if(type === 18){
+
+        let n = 40;
+
+        for(let i=0;i<4;i++){
+
+            nums.push(n);
+
+            n -= i + 2;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       19. SQUARE + CONSTANT
+       +1² +2² +3²...
+    ========================================= */
+
+    else if(type === 19){
+
+        let n = start;
+
+        for(let i=1;i<=4;i++){
+
+            nums.push(n);
+
+            n += i * i;
+        }
+
+        logicAnswer = n;
+    }
+
+
+    /* =========================================
+       20. MIXED EXPERT
+       ×2 +2
+    ========================================= */
+
+    else if(type === 20){
+
+        let n = start;
+
+        nums.push(n);
+
+        n = n * 2 + 2;
+        nums.push(n);
+
+        n = n * 2 + 2;
+        nums.push(n);
+
+        n = n * 2 + 2;
+        nums.push(n);
+
+        logicAnswer =
+            n * 2 + 2;
+    }
+
+
+    /* =========================================
+       BUILD UI
+    ========================================= */
+
+    let html = "";
+
+    html +=
+        '<div style="' +
+        'font-size:13px;' +
+        'color:#64748B;' +
+        'margin-bottom:18px' +
+        '">' +
+        "Find the missing number" +
+        "</div>";
+
+
+    html +=
+        '<div style="' +
+        'display:flex;' +
+        'justify-content:center;' +
+        'align-items:center;' +
+        'gap:7px;' +
+        'font-size:22px;' +
+        'font-weight:900;' +
+        'flex-wrap:wrap;' +
+        '">';
+
+
+    nums.forEach(function(n){
+
+        html +=
+            '<span style="' +
+            'padding:11px;' +
+            'background:#EEF2FF;' +
+            'border-radius:12px;' +
+            'color:#4F46E5;' +
+            '">' +
+            n +
+            "</span>";
+
+    });
+
+
+    html +=
+        '<span style="' +
+        'font-size:24px;' +
+        'color:#94A3B8' +
+        '">' +
+        "?" +
+        "</span>";
+
+
+    html += "</div>";
+
+
+    html +=
+        '<input ' +
+        'class="input" ' +
+        'id="logicInput" ' +
+        'type="number" ' +
+        'inputmode="numeric" ' +
+        'placeholder="Enter answer">';
+
+
+    html +=
+        '<button ' +
+        'class="btn btn3" ' +
+        'style="width:100%;margin-top:10px" ' +
+        'onclick="checkLogic()">' +
+        "Check Answer ✓" +
+        "</button>";
+
+
+    document.getElementById("mbody").innerHTML =
+        html;
+
+    
+    /* Auto focus */
+
+    setTimeout(function(){
+
+        let input =
+            document.getElementById(
+                "logicInput"
+            );
+
+        if(input){
+            input.focus();
+        }
+
+    },100);
+
+}
+
+
+/* =========================================
+   CHECK LOGIC
+========================================= */
+
+function checkLogic(){
+
+    let input =
+        document.getElementById(
+            "logicInput"
+        );
+
+
+    if(!input)
+        return;
+
+
+    let answer =
+        Number(input.value);
+
+
+    if(input.value === ""){
+
+        showBXAlert(
+            "Please enter an answer first.",
+            "Answer Required",
+            "🔢"
+        );
+
+        return;
+    }
+
+
+    if(answer === logicAnswer){
+
+        gameComplete(
+            30 + levels.logic * 5
+        );
+
+    }
+
+    else{
+
+        showBXAlert(
+            "Correct answer नहीं है.\nThink about the pattern and try again!",
+            "Try Again 🧠",
+            "💡"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+updateUI();
+/* =========================================
+   BRAINX — PART 3A
+   REACTION + WORD POWER + MIND MAZE
+========================================= */
+/* =========================================
+   🎨 COLOR MATCH
+========================================= */
+
+let colorAnswer = "";
+let colorScore = 0;
+let colorTotal = 0;
+let colorActive = false;
+
+
+/* =========================================
+   START COLOR MATCH
+========================================= */
+  function startColorMatch(){
+
+    clearInterval(gameTimer);
+
+    let level =
+        Number(levels.color) || 1;
+
+
+    document.getElementById("mtitle")
+        .innerText =
+        "Color Match";
+
+
+    document.getElementById("mlevel")
+        .innerText =
+        "LVL " + level;
+
+
+    colorScore = 0;
+
+
+    colorTotal =
+        Math.min(
+            5 + level,
+            15
+        );
+
+
+    colorActive = true;
+
+
+    let html = "";
+
+    html +=
+        '<div style="' +
+        'font-size:13px;' +
+        'color:#64748B;' +
+        'margin-bottom:12px;' +
+        '">' +
+        'Tap the COLOR, not the word 🎨' +
+        '</div>';
+
+
+    html +=
+        '<div id="colorStatus" style="' +
+        'font-size:15px;' +
+        'font-weight:900;' +
+        'margin-bottom:15px;' +
+        '">' +
+        '0 / ' + colorTotal +
+        '</div>';
+
+
+    html +=
+        '<div id="colorQuestion" style="' +
+        'font-size:34px;' +
+        'font-weight:900;' +
+        'margin:20px 0;' +
+        'min-height:50px;' +
+        '">' +
+        '</div>';
+
+
+    html +=
+        '<div id="colorOptions" style="' +
+        'display:grid;' +
+        'grid-template-columns:1fr 1fr;' +
+        'gap:10px;' +
+        '">' +
+        '</div>';
+
+
+    document.getElementById("mbody")
+        .innerHTML = html;
+
+
+    nextColorQuestion();
+
+}
+
+
+/* =========================================
+   NEXT COLOR QUESTION
+========================================= */
+
+function nextColorQuestion(){
+
+    if(!colorActive)
+        return;
+
+
+    const colors = [
+
+        {
+            name:"RED",
+            value:"#EF4444"
+        },
+
+        {
+            name:"BLUE",
+            value:"#3B82F6"
+        },
+
+        {
+            name:"GREEN",
+            value:"#22C55E"
+        },
+
+        {
+            name:"YELLOW",
+            value:"#EAB308"
+        }
+
+    ];
+
+
+    let correct =
+        colors[
+            Math.floor(
+                Math.random() *
+                colors.length
+            )
+        ];
+
+
+    let word =
+        colors[
+            Math.floor(
+                Math.random() *
+                colors.length
+            )
+        ];
+
+
+    colorAnswer =
+        correct.name;
+
+
+    let question =
+        document.getElementById(
+            "colorQuestion"
+        );
+
+
+    let options =
+        document.getElementById(
+            "colorOptions"
+        );
+
+
+    if(!question || !options)
+        return;
+
+
+    /*
+       Word can be different from
+       the actual text color.
+    */
+
+    question.innerText =
+        word.name;
+
+
+    question.style.color =
+        correct.value;
+
+
+    options.innerHTML = "";
+
+
+    colors.forEach(
+        function(color){
+
+            let button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.innerText =
+                color.name;
+
+
+            button.style.border =
+                "0";
+
+            button.style.borderRadius =
+                "14px";
+
+            button.style.padding =
+                "13px 8px";
+
+            button.style.background =
+                color.value;
+
+            button.style.color =
+                "#FFFFFF";
+
+            button.style.fontWeight =
+                "900";
+
+            button.style.fontSize =
+                "14px";
+
+
+            button.onclick =
+                function(){
+
+                    checkColorAnswer(
+                        color.name
+                    );
+
+                };
+
+
+            options.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CHECK COLOR
+========================================= */
+
+function checkColorAnswer(answer){
+
+    if(!colorActive)
+        return;
+
+
+    if(answer === colorAnswer){
+
+        colorScore++;
+
+
+        let status =
+            document.getElementById(
+                "colorStatus"
+            );
+
+
+        if(status){
+
+            status.innerText =
+                colorScore +
+                " / " +
+                colorTotal;
+
+        }
+
+
+        if(
+            colorScore >=
+            colorTotal
+        ){
+
+            colorActive = false;
+
+
+            gameComplete(
+                25 +
+                levels.color * 5
+            );
+
+
+            return;
+
+        }
+
+
+        nextColorQuestion();
+
+    }
+
+    else{
+
+        colorActive = false;
+
+
+        showBXAlert(
+            "Wrong color! 🎨\nFocus on the COLOR, not the word.",
+            "Focus Failed",
+            "🧠"
+        );
+
+    }
+
+}
+
+/* =========================================
+   ⚡ REACTION TAP
+========================================= */
+
+let reactionReady = false;
+let reactionStart = 0;
+let reactionTimer = null;
+
+
+function startReaction(){
+
+    clearTimeout(reactionTimer);
+
+    document.getElementById("mtitle").innerText =
+        "Reaction Tap";
+
+    document.getElementById("mlevel").innerText =
+        "LVL " + levels.reaction;
+
+    reactionReady = false;
+    reactionStart = 0;
+
+
+    document.getElementById("mbody").innerHTML = `
+
+        <div style="
+            font-size:13px;
+            color:#64748B;
+            margin-bottom:15px;
+        ">
+            Wait for GREEN, then tap as fast as you can! ⚡
+        </div>
+
+
+        <button
+            id="reactionBox"
+            onclick="reactionClick()"
+            style="
+                width:100%;
+                height:230px;
+                border:0;
+                border-radius:25px;
+                background:#EEF2FF;
+                color:#6366F1;
+                font-size:28px;
+                font-weight:900;
+            "
+        >
+            WAIT...
+        </button>
+
+
+        <div
+            id="reactionResult"
+            style="
+                margin-top:14px;
+                font-size:12px;
+                color:#64748B;
+            "
+        >
+            Get ready...
+        </div>
+
+    `;
+
+
+    reactionTimer = setTimeout(
+        function(){
+
+            let box =
+                document.getElementById(
+                    "reactionBox"
+                );
+
+            if(!box) return;
+
+
+            box.style.background =
+                "#DCFCE7";
+
+            box.style.color =
+                "#16A34A";
+
+            box.innerText =
+                "TAP NOW! ⚡";
+
+
+            reactionReady = true;
+
+            reactionStart =
+                performance.now();
+
+        },
+        1200 + Math.random() * 2500
+    );
+
+}
+
+
+function reactionClick(){
+
+    let box =
+        document.getElementById(
+            "reactionBox"
+        );
+
+    let result =
+        document.getElementById(
+            "reactionResult"
+        );
+
+
+    if(!box) return;
+
+
+    /* Too early */
+
+    if(!reactionReady){
+
+        clearTimeout(reactionTimer);
+
+        box.style.background =
+            "#FEE2E2";
+
+        box.style.color =
+            "#DC2626";
+
+        box.innerText =
+            "TOO EARLY!";
+
+
+        result.innerText =
+            "Wait for GREEN before tapping.";
+
+
+        setTimeout(
+            startReaction,
+            800
+        );
+
+        return;
+    }
+
+
+    /* Calculate reaction time */
+
+    let time =
+        Math.round(
+            performance.now() -
+            reactionStart
+        );
+
+
+    reactionReady = false;
+
+
+    box.style.background =
+        "#EEF2FF";
+
+    box.style.color =
+        "#6366F1";
+
+    box.innerText =
+        time + " ms ⚡";
+
+
+    result.innerText =
+        "Reaction time recorded!";
+
+
+    gameComplete(
+        25 + levels.reaction * 5
+    );
+
+}
+
+
+/* =========================================
+   🔤 WORD POWER
+========================================= */
+
+
+const wordQuestions = [
+
+    {
+        word:"Abundant",
+        options:[
+            "कम",
+            "प्रचुर",
+            "धीमा",
+            "कठिन"
+        ],
+        answer:1
+    },
+
+
+    {
+        word:"Benevolent",
+        options:[
+            "दयालु",
+            "क्रोधित",
+            "चालाक",
+            "गरीब"
+        ],
+        answer:0
+    },
+
+
+    {
+        word:"Candid",
+        options:[
+            "ईमानदार / स्पष्ट",
+            "डरपोक",
+            "आलसी",
+            "शांत"
+        ],
+        answer:0
+    },
+
+
+    {
+        word:"Diligent",
+        options:[
+            "मेहनती",
+            "लापरवाह",
+            "कमजोर",
+            "अमीर"
+        ],
+        answer:0
+    },
+
+
+    {
+        word:"Fragile",
+        options:[
+            "मजबूत",
+            "नाजुक",
+            "भारी",
+            "तेज"
+        ],
+        answer:1
+    },
+
+
+    {
+        word:"Hostile",
+        options:[
+            "मित्रवत",
+            "शत्रुतापूर्ण",
+            "खुश",
+            "शांत"
+        ],
+        answer:1
+    },
+    
+
+];
+
+
+let wordIndex = 0;
+let wordCorrect = 0;
+
+
+function startWord(){
+
+    wordIndex = 0;
+
+    wordCorrect = 0;
+
+    showWordQuestion();
+
+}
+
+
+function showWordQuestion(){
+
+    let q =
+        wordQuestions[
+            wordIndex %
+            wordQuestions.length
+        ];
+
+
+    document.getElementById("mtitle").innerText =
+        "Word Power";
+
+
+    document.getElementById("mlevel").innerText =
+        "LVL " + levels.word;
+
+
+    let html = `
+
+        <div style="
+            font-size:11px;
+            color:#94A3B8;
+        ">
+            Question ${wordIndex + 1}
+        </div>
+
+
+        <div style="
+            margin-top:10px;
+            font-size:28px;
+            font-weight:900;
+            color:#4F46E5;
+        ">
+            ${q.word}
+        </div>
+
+
+        <div style="
+            margin-top:5px;
+            font-size:11px;
+            color:#94A3B8;
+        ">
+            Choose the correct Hindi meaning
+        </div>
+
+
+        <div style="
+            display:grid;
+            gap:9px;
+            margin-top:20px;
+        ">
+    `;
+
+
+    q.options.forEach(
+        function(option,index){
+
+            html += `
+
+                <button
+                    class="btn btn1"
+                    style="
+                        width:100%;
+                        text-align:left;
+                        padding:14px;
+                    "
+                    onclick="checkWord(${index})"
+                >
+
+                    ${String.fromCharCode(65 + index)}.
+                    ${option}
+
+                </button>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+        </div>
+    `;
+
+
+    document.getElementById("mbody").innerHTML =
+        html;
+
+}
+
+
+function checkWord(index){
+
+    let q =
+        wordQuestions[
+            wordIndex %
+            wordQuestions.length
+        ];
+
+
+    if(index === q.answer){
+
+        wordCorrect++;
+
+
+        showBXAlert(
+            "Correct! 🎯\n" +
+            q.word +
+            " का सही अर्थ: " +
+            q.options[q.answer],
+
+            "Excellent!",
+
+            "✅"
+        );
+
+
+        wordIndex++;
+
+
+        if(wordCorrect >= 3){
+
+            setTimeout(
+                function(){
+
+                    gameComplete(
+                        25 +
+                        levels.word * 5
+                    );
+
+                },
+                700
+            );
+
+        }
+
+        else{
+
+            setTimeout(
+                function(){
+
+                    closeBXAlert();
+
+                    showWordQuestion();
+
+                },
+                700
+            );
+
+        }
+
+    }
+
+    else{
+
+        showBXAlert(
+            "Correct answer: " +
+            q.options[q.answer],
+
+            "Keep Learning 🧠",
+
+            "💡"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   🗺️ MIND MAZE
+========================================= */
+
+
+let mazePlayer = 0;
+
+let mazeGoal = 15;
+
+
+function startMaze(){
+
+    mazePlayer = 0;
+
+
+    document.getElementById("mtitle").innerText =
+        "Mind Maze";
+
+
+    document.getElementById("mlevel").innerText =
+        "LVL " + levels.maze;
+
+
+    drawMaze();
+
+}
+
+
+function drawMaze(){
+
+    let html = `
+
+        <div style="
+            font-size:12px;
+            color:#64748B;
+            margin-bottom:12px;
+        ">
+            Reach the ⭐ using the buttons below.
+        </div>
+
+
+        <div
+            id="mazeGrid"
+            style="
+                display:grid;
+                grid-template-columns:
+                repeat(4,1fr);
+                gap:7px;
+                max-width:280px;
+                margin:auto;
+            "
+        >
+
+    `;
+
+
+    for(
+        let i = 0;
+        i < 16;
+        i++
+    ){
+
+        let symbol = "";
+
+
+        if(i === mazePlayer){
+
+            symbol = "🧠";
+
+        }
+
+
+        if(i === mazeGoal){
+
+            symbol = "⭐";
+
+        }
+
+
+        html += `
+
+            <div style="
+                aspect-ratio:1;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border-radius:12px;
+
+                background:
+                ${
+                    i === mazePlayer
+                    ? "#6366F1"
+                    : "#F1F5F9"
+                };
+
+                color:
+                ${
+                    i === mazePlayer
+                    ? "white"
+                    : "#334155"
+                };
+
+                font-size:22px;
+            ">
+
+                ${symbol}
+
+            </div>
+
+        `;
+
+    }
+
+
+    html += `
+
+        </div>
+
+
+        <div style="
+            display:grid;
+            grid-template-columns:
+            repeat(3,55px);
+            justify-content:center;
+            gap:8px;
+            margin-top:18px;
+        ">
+
+
+            <div></div>
+
+
+            <button
+                class="maze-btn"
+                onclick="moveMaze(-4)"
+            >
+                ↑
+            </button>
+
+
+            <div></div>
+
+
+            <button
+                class="maze-btn"
+                onclick="moveMaze(-1)"
+            >
+                ←
+            </button>
+
+
+            <button
+                class="maze-btn"
+                onclick="moveMaze(4)"
+            >
+                ↓
+            </button>
+
+
+            <button
+                class="maze-btn"
+                onclick="moveMaze(1)"
+            >
+                →
+            </button>
+
+
+        </div>
+
+    `;
+
+
+    document.getElementById("mbody").innerHTML =
+        html;
+
+}
+
+
+function moveMaze(step){
+
+    let newPosition =
+        mazePlayer + step;
+
+
+    /* बाहर जाने से रोकें */
+
+    if(
+        newPosition < 0 ||
+        newPosition > 15
+    ){
+
+        return;
+
+    }
+
+
+    /* Left-right wrapping रोकें */
+
+    if(
+        step === 1 &&
+        mazePlayer % 4 === 3
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        step === -1 &&
+        mazePlayer % 4 === 0
+    ){
+
+        return;
+
+    }
+
+
+    mazePlayer =
+        newPosition;
+
+
+    drawMaze();
+
+
+    /* Goal reached */
+
+    if(
+        mazePlayer === mazeGoal
+    ){
+
+        gameComplete(
+            30 +
+            levels.maze * 5
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   PART 3A END
+========================================= */
+/* =========================================
+   🧠 BRAINX — PART 3B
+   FINAL INTEGRATION + DRAWER + PROGRESS
+========================================= */
+
+
+/* =========================================
+   🎮 FINAL GAME START SYSTEM
+========================================= */
+
+/* =========================================
+   🎮 GAME START SYSTEM — FIXED
+========================================= */
+
+function startGame(game){
+
+    currentGame = game;
+
+    /* Make sure level exists */
+    levels[game] =
+        levels[game] || 1;
+
+
+    /* Open modal */
+    const modal =
+        document.getElementById("modal");
+
+    if(modal){
+        modal.classList.add("show");
+    }
+
+
+    /* Disable Next Level until challenge is completed */
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+    if(nextBtn){
+        nextBtn.disabled = true;
+        nextBtn.style.display = "block";
+    }
+
+
+    /* Start selected game */
+
+    if(game === "memory"){
+
+        startMemory();
+
+    }
+
+    else if(game === "focus"){
+
+        startFocus();
+
+    }
+
+    else if(game === "logic"){
+
+        startLogic();
+
+    }
+
+    else{
+
+        showBXAlert(
+            "This game will be activated in Part 3.",
+            "Coming Soon 🚀",
+            "🔒"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   ❌ CLOSE MODAL
+========================================= */
+
+function closeModal(){
+
+    clearInterval(gameTimer);
+
+    clearTimeout(gameTimer);
+
+    clearTimeout(focusTimeout);
+
+
+    const modal =
+        document.getElementById("modal");
+
+    if(modal){
+
+        modal.classList.remove("show");
+
+    }
+
+}
+
+
+/* =========================================
+   🔄 RESTART CURRENT GAME
+========================================= */
+  
+function restartGame(){
+
+    if(!currentGame)
+        return;
+
+
+    startGame(currentGame);
+
+}
+
+
+/* =========================================
+   ➡️ NEXT LEVEL — FIXED
+========================================= */
+
+function nextLevel(){
+
+    if(!currentGame)
+        return;
+
+
+    /* Get current level safely */
+
+    levels[currentGame] =
+        Number(levels[currentGame]) || 1;
+
+
+    /* Increase level */
+
+    levels[currentGame]++;
+
+
+    /* Save progress */
+
+    saveData();
+
+
+    /* Update main UI */
+
+    updateUI();
+
+
+    /* Disable button immediately */
+
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+    if(nextBtn){
+
+        nextBtn.disabled = true;
+
+    }
+
+
+    /* Close completion alert */
+
+    if(typeof closeBXAlert === "function"){
+
+        closeBXAlert();
+
+    }
+
+
+    /* Start new level */
+
+    setTimeout(function(){
+
+        startGame(currentGame);
+
+    },150);
+
+}
+
+
+/* =========================================
+   🏆 GAME COMPLETE
+========================================= */
+
+function gameComplete(amount = 20){
+
+    /* Add XP */
+
+    xp += amount;
+
+
+    /* Make sure level exists */
+
+    levels[currentGame] =
+        Number(levels[currentGame]) || 1;
+
+
+    /* Save */
+
+    saveData();
+
+
+    /* Update UI */
+
+    updateUI();
+
+
+    /* Enable Next Level */
+
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+    if(nextBtn){
+
+        nextBtn.disabled = false;
+
+        nextBtn.style.display = "block";
+
+    }
+
+
+    /* Completion message */
+
+    showBXAlert(
+
+        "You completed the challenge!\n+" +
+        amount +
+        " XP added.",
+
+        "Great Job! 🧠",
+
+        "🎉"
+
+    );
+
+}
+
+
+/* =========================================
+   📊 PROGRESS SCREEN
+========================================= */
+
+function showProgress(){
+
+    closeDrawer();
+
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+
+    document.getElementById("mtitle")
+        .innerText =
+        "Your Progress";
+
+
+    document.getElementById("mlevel")
+        .innerText =
+        "BrainX Stats";
+
+
+    let level =
+        getGlobalLevel();
+
+
+    let nextXP =
+        level * 100;
+
+
+    let progress =
+        xp % 100;
+
+
+    let html = `
+
+        <div style="
+            text-align:center;
+            padding:8px;
+        ">
+
+
+            <div style="
+                font-size:55px;
+                margin-bottom:8px;
+            ">
+                🧠
+            </div>
+
+
+            <div style="
+                font-size:25px;
+                font-weight:900;
+                color:#2563EB;
+            ">
+                Level ${level}
+            </div>
+
+
+            <div style="
+                margin-top:5px;
+                font-size:13px;
+                color:#64748B;
+            ">
+                ${xp} Total XP
+            </div>
+
+
+            <div style="
+                margin-top:20px;
+                height:12px;
+                background:#E2E8F0;
+                border-radius:20px;
+                overflow:hidden;
+            ">
+
+                <div style="
+                    width:${progress}%;
+                    height:100%;
+                    background:
+                    linear-gradient(
+                        90deg,
+                        #38BDF8,
+                        #2563EB
+                    );
+                    border-radius:20px;
+                "></div>
+
+            </div>
+
+
+            <div style="
+                margin-top:7px;
+                font-size:11px;
+                color:#94A3B8;
+            ">
+                ${progress}/100 XP to next level
+            </div>
+
+
+            <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:10px;
+                margin-top:20px;
+            ">
+
+
+                <div style="
+                    background:#F8FAFC;
+                    padding:15px;
+                    border-radius:18px;
+                ">
+                    <div style="font-size:22px">
+                        🧩
+                    </div>
+
+                    <b>
+                        ${levels.memory}
+                    </b>
+
+                    <small>
+                        Memory
+                    </small>
+                </div>
+
+
+                <div style="
+                    background:#F8FAFC;
+                    padding:15px;
+                    border-radius:18px;
+                ">
+                    <div style="font-size:22px">
+                        🎯
+                    </div>
+
+                    <b>
+                        ${levels.focus}
+                    </b>
+
+                    <small>
+                        Focus
+                    </small>
+                </div>
+
+
+                <div style="
+                    background:#F8FAFC;
+                    padding:15px;
+                    border-radius:18px;
+                ">
+                    <div style="font-size:22px">
+                        🔢
+                    </div>
+
+                    <b>
+                        ${levels.logic}
+                    </b>
+
+                    <small>
+                        Logic
+                    </small>
+                </div>
+
+
+                <div style="
+                    background:#F8FAFC;
+                    padding:15px;
+                    border-radius:18px;
+                ">
+                    <div style="font-size:22px">
+                        ⚡
+                    </div>
+
+                    <b>
+                        ${levels.reaction}
+                    </b>
+
+                    <small>
+                        Reaction
+                    </small>
+                </div>
+
+
+                <div style="
+                    background:#F8FAFC;
+                    padding:15px;
+                    border-radius:18px;
+                ">
+                    <div style="font-size:22px">
+                        🔤
+                    </div>
+
+                    <b>
+                        ${levels.word}
+                    </b>
+
+                    <small>
+                        Word Power
+                    </small>
+                </div>
+
+
+                <div style="
+                    background:#F8FAFC;
+                    padding:15px;
+                    border-radius:18px;
+                ">
+                    <div style="font-size:22px">
+                        🗺️
+                    </div>
+
+                    <b>
+                        ${levels.maze}
+                    </b>
+
+                    <small>
+                        Mind Maze
+                    </small>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById("mbody")
+        .innerHTML = html;
+
+}
+
+
+/* =========================================
+   📂 DRAWER
+========================================= */
+
+function openDrawer(){
+
+    document.getElementById("drawer")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document.getElementById("drawer")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================
+   📱 TELEGRAM
+========================================= */
+
+function openTelegram(){
+
+    window.open(
+        "https://t.me/Allexamsvikash",
+        "_blank"
+    );
+
+}
+
+
+/* =========================================
+   ▶️ YOUTUBE
+========================================= */
+
+function openYouTube(){
+
+    window.open(
+        "https://www.youtube.com/",
+        "_blank"
+    );
+
+}
+
+
+/* =========================================
+   📸 INSTAGRAM
+========================================= */
+
+function openInstagram(){
+
+    window.open(
+        "https://www.instagram.com/",
+        "_blank"
+    );
+
+}
+
+
+/* =========================================
+   📤 SHARE BRAINX
+========================================= */
+
+async function shareBrainX(){
+
+    closeDrawer();
+
+
+    let shareData = {
+
+        title:
+        "BrainX 🧠",
+
+        text:
+        "BrainX के साथ अपनी Memory, Focus, Logic और Reaction Speed को train करें! 🧠⚡",
+
+        url:
+        window.location.href
+
+    };
+
+
+    try{
+
+        if(
+            navigator.share
+        ){
+
+            await navigator.share(
+                shareData
+            );
+
+        }
+
+        else{
+
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+
+
+            showBXAlert(
+                "BrainX link copied!",
+                "Share BrainX",
+                "📤"
+            );
+
+        }
+
+    }
+
+    catch(error){
+
+        /* User cancelled share */
+
+    }
+
+}
+
+
+/* =========================================
+   🗑️ RESET PROGRESS
+========================================= */
+
+function resetProgress(){
+
+    closeDrawer();
+
+
+    showBXAlert(
+
+        "आपका XP और सभी game levels reset हो जाएंगे।",
+
+        "Reset Progress?",
+
+        "⚠️"
+
+    );
+
+
+    setTimeout(
+        function(){
+
+            let ok =
+                confirm(
+                    "Reset BrainX progress?"
+                );
+
+
+            if(ok){
+
+                xp = 0;
+
+                streak = 0;
+
+
+                levels = {
+
+                    memory:1,
+
+                    focus:1,
+
+                    logic:1,
+
+                    reaction:1,
+
+                    word:1,
+
+                    maze:1
+
+                };
+
+
+                saveData();
+
+                updateUI();
+
+
+                showBXAlert(
+
+                    "आपकी पूरी progress reset हो गई।",
+
+                    "Reset Complete",
+
+                    "🔄"
+
+                );
+
+            }
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================================
+   ℹ️ ABOUT BRAINX
+========================================= */
+
+function showAbout(){
+
+    closeDrawer();
+
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+
+    document.getElementById("mtitle")
+        .innerText =
+        "About BrainX";
+
+
+    document.getElementById("mlevel")
+        .innerText =
+        "Train Your Brain";
+
+
+    document.getElementById("mbody")
+        .innerHTML = `
+
+        <div style="
+            text-align:center;
+            padding:10px;
+        ">
+
+
+            <div style="
+                font-size:65px;
+                margin-bottom:8px;
+            ">
+                🧠
+            </div>
+
+
+            <div style="
+                font-size:30px;
+                font-weight:1000;
+                color:#2563EB;
+            ">
+                BrainX
+            </div>
+
+
+            <p style="
+                color:#64748B;
+                line-height:1.7;
+                font-size:13px;
+            ">
+                A simple brain-training experience
+                designed to improve your
+                memory, focus, logic,
+                reaction and vocabulary.
+            </p>
+
+
+            <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:9px;
+                margin-top:15px;
+            ">
+
+
+                <div class="btn btn1">
+                    🧩 Memory
+                </div>
+
+
+                <div class="btn btn1">
+                    🎯 Focus
+                </div>
+
+
+                <div class="btn btn1">
+                    🔢 Logic
+                </div>
+
+
+                <div class="btn btn1">
+                    ⚡ Reaction
+                </div>
+
+
+                <div class="btn btn1">
+                    🔤 Word
+                </div>
+
+
+                <div class="btn btn1">
+                    🗺️ Maze
+                </div>
+
+
+            </div>
+
+
+            <div style="
+                margin-top:18px;
+                font-size:11px;
+                color:#94A3B8;
+            ">
+                BrainX • Train • Think • Improve
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================
+   🧠 CUSTOM ALERT
+========================================= */
+
+function showBXAlert(
+    message,
+    title="BrainX",
+    icon="🧠"
+){
+
+    let alertBox =
+        document.getElementById(
+            "bxAlert"
+        );
+
+
+    if(!alertBox) return;
+
+
+    document.getElementById(
+        "bxAlertIcon"
+    ).innerText = icon;
+
+
+    document.getElementById(
+        "bxAlertTitle"
+    ).innerText = title;
+
+
+    document.getElementById(
+        "bxAlertMessage"
+    ).innerText = message;
+
+
+    alertBox.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeBXAlert(){
+
+    let alertBox =
+        document.getElementById(
+            "bxAlert"
+        );
+
+
+    if(alertBox){
+
+        alertBox.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   ⌨️ KEYBOARD SUPPORT
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Escape"
+        ){
+
+            closeBXAlert();
+
+            closeModal();
+
+            closeDrawer();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   🖱️ MODAL BACKDROP CLOSE
+========================================= */
+
+document.getElementById(
+    "modal"
+).addEventListener(
+    "click",
+    function(e){
+
+        if(
+            e.target === this
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   📂 DRAWER BACKDROP
+========================================= */
+
+document.getElementById(
+    "drawer"
+).addEventListener(
+    "click",
+    function(e){
+
+        if(
+            e.target === this
+        ){
+
+            closeDrawer();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   🚀 FINAL UI INITIALIZATION
+========================================= */
+
+try{
+
+    updateUI();
+
+}
+catch(error){
+
+    console.log(
+        "BrainX UI Error:",
+        error
+    );
+
+}
+
+
+
+/* =====================================================
+   💰 FINAL AD LOGIC - 1st Click & Every 4th Click = Rewarded
+   Banner = Always On Home + Game Play
+   Zone = 294109 (Real Code)
+===================================================== */
+let totalBtnClicks = parseInt(localStorage.getItem('bx_ad_clicks') || '0');
+let rewardedReady = false;
+
+// Check if rewarded SDK loaded
+setInterval(()=>{
+    if(typeof show_294109 === 'function') rewardedReady = true;
+}, 1000);
+
+function showRewardedAdFinal(rewardAmount = 50, customMsg = null){
+    if(typeof show_294109 === 'function'){
+        show_294109().then(()=>{
+            console.log("✅ Rewarded Completed - Zone 294109");
+            xp += rewardAmount;
+            saveData();
+            updateUI();
+            if(customMsg){
+                showBXAlert(customMsg, "Reward Claimed! 🎉", "💰");
+            } else {
+                showBXAlert(`+${rewardAmount} XP Added! Keep Training 🧠`, "Reward Unlocked!", "🎉");
+            }
+        }).catch(e=>{
+            console.log("Rewarded Failed", e);
+            showBXAlert("Ad not ready, try again in 2 seconds.", "Oops 😕", "⏳");
+        });
+    } else {
+        showBXAlert("Ad Loading... Please wait", "Loading ⏳", "⌛");
+    }
+}
+
+// Core function - called on every button click
+function trackButtonClickForAd(){
+    totalBtnClicks++;
+    localStorage.setItem('bx_ad_clicks', totalBtnClicks.toString());
+    console.log("Button Clicks:", totalBtnClicks);
+    
+    // Logic: 1st click and every 4th click (1,4,8,12,16...)
+    if(totalBtnClicks === 1 || totalBtnClicks % 4 === 0){
+        setTimeout(()=>{
+            if(confirm(`🎁 Watch Ad to get +50 XP Bonus?\n\nClicks: ${totalBtnClicks} | Ad will unlock reward!`)){
+                showRewardedAdFinal(50);
+            }
+        }, 400);
+        return true; // Ad shown
+    }
+    return false;
+}
+
+// Attach to ALL buttons automatically
+document.addEventListener('click', function(e){
+    let target = e.target;
+    // Check if clicked element is button or inside button/box
+    let isButton = target.closest('button, .box, .cell, .menu');
+    if(isButton){
+        // Don't trigger on modal close, alert close, nav
+        if(isButton.classList.contains('bx-alert-btn') || isButton.id === 'closeBtn') return;
+        
+        // Track
+        let wasAd = trackButtonClickForAd();
+        // If ad is going to show, we let it show via confirm
+    }
+}, true);
+
+// Also hook into game open to ensure banner refresh in game
+let originalOpenGame = null;
+setTimeout(()=>{
+    // Try to hook game functions if exist
+    if(typeof window.openGame === 'function'){
+        originalOpenGame = window.openGame;
+        window.openGame = function(...args){
+            let result = originalOpenGame.apply(this, args);
+            // Refresh game banner
+            setTimeout(()=>{
+                let gb = document.getElementById('banner-game-play');
+                if(gb) gb.style.display = 'flex';
+            }, 200);
+            return result;
+        }
+    }
+}, 1000);
+
+// Extra reward triggers on game win - call this from your game win logic
+function onGameWinReward(){
+    setTimeout(()=>{
+        if(confirm("🏆 You Won! Watch Ad for Double XP ( +100 XP )?")){
+            showRewardedAdFinal(100, "Double XP Unlocked! +100 XP 🎉🏆");
+        }
+    }, 600);
+}
+
+console.log("✅ BrainX Ad System Ready - Zone 294109 - 1st & 4th Click = Rewarded");
+
+/* =========================================
+   🎉 BRAINX SCRIPT COMPLETE
+========================================= */
+
+</script>
+
+</body>
+</html>
