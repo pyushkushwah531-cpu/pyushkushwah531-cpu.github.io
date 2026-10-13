@@ -13,10 +13,10 @@ user-scalable=no">
 <title>BrainX — Train • Think • Improve</title>
 <!-- ==== MONETAG REAL ADS - ZONE 294109 START ==== -->
 <meta name="monetag" content="659e01da3b26a512101db6c102854f">
-
-
+<!-- Real OnClick Tag -->
+<!-- removed -->
 <!-- Banner Tags -->
-
+<!-- removed -->
 <script src="https://3nbf4.com/act/files/tag.min.js?z=294109" async data-cfasync="false"></script>
 <!-- Rewarded SDK -->
 <script src="//libtl.com/sdk.js" data-zone="294109" data-sdk="show_294109"></script>
@@ -1841,7 +1841,6 @@ Reset Progress
 
 <!-- XP -->
 
-
 <div class="drawer-xp">
 
 <div class="drawer-xp-label">
@@ -3082,8 +3081,7 @@ function startLogic(){
        16. ×2 , +3
     ========================================= */
 
-    
-else if(type === 16){
+    else if(type === 16){
 
         let n = start;
 
@@ -3106,9 +3104,8 @@ else if(type === 16){
     /* =========================================
        17. INCREASING DIFFERENCE
        +2 +3 +4 +5
-    ========================================= */
-
-    else if(type === 17){
+    ========================================= *
+   else if(type === 17){
 
         let n = start;
 
@@ -4099,8 +4096,9 @@ function checkWord(index){
 /* =========================================
    🗺️ MIND MAZE
 ========================================= */
-  
- let mazePlayer = 0;
+
+
+let mazePlayer = 0;
 
 let mazeGoal = 15;
 
@@ -4338,8 +4336,8 @@ function moveMaze(step){
 
 /* =========================================
    PART 3A END
-========================================= */
-/* =========================================
+========================================
+   /* =========================================
    🧠 BRAINX — PART 3B
    FINAL INTEGRATION + DRAWER + PROGRESS
 ========================================= */
@@ -5292,6 +5290,7 @@ catch(error){
    - Zone = 294109
 ===================================================== */
 let totalBtnClicks = parseInt(localStorage.getItem('bx_ad_clicks') || '0');
+if(isNaN(totalBtnClicks)) totalBtnClicks=0;
 let isAdShowing = false;
 
 setInterval(()=>{
@@ -5303,28 +5302,30 @@ setInterval(()=>{
 function showRewardedAdFinal(rewardAmount = 50, customMsg = null){
     if(isAdShowing) return;
     isAdShowing = true;
+    
+    function giveReward(){
+        xp += rewardAmount;
+        saveData();
+        updateUI();
+        isAdShowing = false;
+        if(customMsg){
+            showBXAlert(customMsg, "Reward Claimed! 🎉", "💰");
+        } else {
+            showBXAlert(`+${rewardAmount} XP Added!`, "Reward Unlocked!", "🎉");
+        }
+    }
+
     if(typeof show_294109 === 'function'){
         show_294109().then(()=>{
             console.log("✅ Rewarded Completed - 10sec watched");
-            xp += rewardAmount;
-            saveData();
-            updateUI();
-            isAdShowing = false;
-            if(customMsg){
-                showBXAlert(customMsg, "Reward Claimed! 🎉", "💰");
-            } else {
-                showBXAlert(`+${rewardAmount} XP Added!`, "Reward Unlocked!", "🎉");
-            }
-        }).catch(e=>{
-            console.log("Ad closed early", e);
-            isAdShowing = false;
-            showBXAlert("Watch full 10 sec to get reward!", "Oops 😕", "⏳");
+            giveReward();
+        }).catch((e)=>{
+            console.log("Ad failed, giving reward anyway", e);
+            giveReward();
         });
     } else {
-        isAdShowing = false;
-        xp += rewardAmount;
-        saveData(); updateUI();
-        showBXAlert(`+${rewardAmount} XP Added!`, "Reward!", "🎉");
+        console.log("SDK not ready, simulating 10sec ad");
+        setTimeout(giveReward, 800);
     }
 }
 
