@@ -11,15 +11,12 @@ maximum-scale=1.0,
 user-scalable=no">
 
 <title>BrainX — Train • Think • Improve</title>
-<!-- ==== MONETAG REAL ADS - ZONE 294109 START ==== -->
+<!-- ==== MONETAG TAGS: IN-PAGE PUSH + VIGNETTE ==== -->
 <meta name="monetag" content="659e01da3b26a512101db6c102854f">
-<!-- Real OnClick Tag -->
-<!-- removed -->
-<!-- Banner Tags -->
-<!-- removed -->
-<script src="https://3nbf4.com/act/files/tag.min.js?z=294109" async data-cfasync="false"></script>
-<!-- Rewarded SDK -->
-<script src="//libtl.com/sdk.js" data-zone="294109" data-sdk="show_294109"></script>
+<!-- In-Page Push zone supplied by the publisher -->
+<script>(function(s){s.dataset.zone='12018615';s.src='https://nap5k.com/tag.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<!-- Vignette / interstitial-style zone supplied by the publisher -->
+<script>(function(s){s.dataset.zone='12018622';s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <style>
 .ad-banner-box{margin:14px 0; min-height:110px; background:white; border-radius:18px; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 16px rgba(15,23,42,.06); overflow:hidden; border:1px dashed #E2E8F0;}
 .ad-label{font-size:9px; color:#94A3B8; letter-spacing:.8px; font-weight:700;}
@@ -543,7 +540,7 @@ box-shadow:
 0 6px 15px rgba(99,102,241,.20);
 }
 
-.btn3:{
+.btn3:disabled{
 opacity:.4;
 }
 
@@ -1059,7 +1056,7 @@ transform:scale(1);
 
 /* Disabled */
 
-#nextBtn:{
+#nextBtn:disabled{
     background:
         linear-gradient(
             135deg,
@@ -1081,7 +1078,7 @@ transform:scale(1);
 
 /* Enabled hover */
 
-#nextBtn:not(:):hover{
+#nextBtn:not(:disabled):hover{
 
     transform:translateY(-2px);
 
@@ -1158,7 +1155,7 @@ Give your mind a fun daily workout.
 
 
 <!-- BANNER AD - HOME TOP -->
-<div class="ad-banner-box" id="banner-home-top"><span class="ad-label">AD • BrainX Home</span></div>
+<div class="ad-banner-box" id="banner-home-top"><span class="ad-label">Monetag In-Page Push enabled above</span></div>
 <div class="card">
 
 <div class="brain">
@@ -1263,7 +1260,7 @@ id="stNum">
 
 
 <!-- BANNER AD - HOME MID -->
-<div class="ad-banner-box" id="banner-home-mid"><span class="ad-label">AD • Continue Playing</span></div>
+<div class="ad-banner-box" id="banner-home-mid"><span class="ad-label">Monetag In-Page Push enabled above</span></div>
 <div class="games-title">
 
 <span>
@@ -1487,7 +1484,7 @@ Find path
 
 <!-- BANNER AD - STICKY BOTTOM -->
 <div id="sticky-banner" style="position:fixed; bottom:70px; left:50%; transform:translateX(-50%); width:95%; max-width:480px; min-height:60px; background:white; border-radius:14px; box-shadow:0 8px 25px rgba(0,0,0,.15); z-index:400; display:flex; align-items:center; justify-content:center; border:1px solid #E2E8F0;">
-    <span class="ad-label">AD • BrainX • 294109</span>
+    <span class="ad-label">Monetag In-Page Push enabled above</span>
 </div>
 
 <div class="nav">
@@ -1840,7 +1837,6 @@ Reset Progress
 
 
 <!-- XP -->
-
 <div class="drawer-xp">
 
 <div class="drawer-xp-label">
@@ -2206,7 +2202,7 @@ function gameComplete(
 
     document.getElementById(
         "nextBtn"
-    ). = false;
+    ).disabled = false;
 
 
     xp += amount;
@@ -3079,7 +3075,7 @@ function startLogic(){
 
     /* =========================================
        16. ×2 , +3
-    ========================================= */
+   ===================================== */
 
     else if(type === 16){
 
@@ -3104,8 +3100,9 @@ function startLogic(){
     /* =========================================
        17. INCREASING DIFFERENCE
        +2 +3 +4 +5
-    ========================================= *
-   else if(type === 17){
+    ========================================= */
+
+    else if(type === 17){
 
         let n = start;
 
@@ -4336,8 +4333,8 @@ function moveMaze(step){
 
 /* =========================================
    PART 3A END
-========================================
-   /* =========================================
+========================================= */
+/*======================================
    🧠 BRAINX — PART 3B
    FINAL INTEGRATION + DRAWER + PROGRESS
 ========================================= */
@@ -4374,7 +4371,7 @@ function startGame(game){
         document.getElementById("nextBtn");
 
     if(nextBtn){
-        nextBtn. = true;
+        nextBtn.disabled = true;
         nextBtn.style.display = "block";
     }
 
@@ -4399,6 +4396,15 @@ function startGame(game){
 
     }
 
+    else if(game === "color"){
+        if(typeof startColorMatch === 'function') startColorMatch(); else startMemory();
+    }
+    else if(game === "reaction"){
+        if(typeof startReaction === 'function') startReaction(); else startMemory();
+    }
+    else if(game === "maze"){
+        if(typeof startMaze === 'function') startMaze(); else startMemory();
+    }
     else if(game === "number"){
         if(typeof startNumber !== 'undefined') startNumber(); else startMemory();
     }
@@ -4497,7 +4503,7 @@ function nextLevel(){
 
     if(nextBtn){
 
-        nextBtn. = true;
+        nextBtn.disabled = true;
 
     }
 
@@ -4556,7 +4562,7 @@ function gameComplete(amount = 20){
 
     if(nextBtn){
 
-        nextBtn. = false;
+        nextBtn.disabled = false;
 
         nextBtn.style.display = "block";
 
@@ -5284,86 +5290,30 @@ catch(error){
 
 
 /* =====================================================
-   💰 FINAL AD LOGIC - ONLY 1st & 4th Click = Rewarded
-   - No Ad on 2nd,3rd,5th,6th,7th
-   - 10 sec ad then X button (Monetag SDK handles X)
-   - Zone = 294109
+   BRAINX GAME-TILE WIRING
+   Monetag In-Page Push and Vignette tags above are managed by their scripts.
+   Their tags do not expose a documented per-game-click trigger here, so this
+   file does not falsely promise an ad on the 1st/4th/8th/12th tile tap.
 ===================================================== */
-let totalBtnClicks = parseInt(localStorage.getItem('bx_ad_clicks') || '0');
-if(isNaN(totalBtnClicks)) totalBtnClicks=0;
-let isAdShowing = false;
-
-setInterval(()=>{
-    if(typeof show_294109 === 'function'){
-        console.log("Rewarded SDK Ready Zone 294109");
-    }
-}, 2000);
-
-function showRewardedAdFinal(rewardAmount = 50, customMsg = null){
-    if(isAdShowing) return;
-    isAdShowing = true;
-    
-    function giveReward(){
-        xp += rewardAmount;
-        saveData();
-        updateUI();
-        isAdShowing = false;
-        if(customMsg){
-            showBXAlert(customMsg, "Reward Claimed! 🎉", "💰");
-        } else {
-            showBXAlert(`+${rewardAmount} XP Added!`, "Reward Unlocked!", "🎉");
+document.querySelectorAll('.grid .box[onclick^="startGame("]').forEach(function(tile) {
+    const match = tile.getAttribute('onclick').match(/startGame\(['"]([^'"]+)['"]\)/);
+    if (!match) return;
+    const game = match[1];
+    tile.removeAttribute('onclick');
+    tile.setAttribute('role', 'button');
+    tile.setAttribute('tabindex', '0');
+    tile.addEventListener('click', function() { startGame(game); });
+    tile.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            startGame(game);
         }
-    }
+    });
+});
 
-    if(typeof show_294109 === 'function'){
-        show_294109().then(()=>{
-            console.log("✅ Rewarded Completed - 10sec watched");
-            giveReward();
-        }).catch((e)=>{
-            console.log("Ad failed, giving reward anyway", e);
-            giveReward();
-        });
-    } else {
-        console.log("SDK not ready, simulating 10sec ad");
-        setTimeout(giveReward, 800);
-    }
-}
-
-function trackButtonClickForAd(){
-    if(isAdShowing) return false;
-    totalBtnClicks++;
-    localStorage.setItem('bx_ad_clicks', totalBtnClicks.toString());
-    console.log("Clicks:", totalBtnClicks);
-    let shouldShowAd = (totalBtnClicks === 1 || totalBtnClicks % 4 === 0);
-    if(shouldShowAd){
-        setTimeout(()=>{
-            if(confirm(`🎁 Watch 10 sec Ad for +50 XP?\nClick ${totalBtnClicks} - X after 10 sec`)){
-                showRewardedAdFinal(50);
-            }
-        }, 400);
-        return true;
-    }
-    return false;
-}
-
-document.addEventListener('click', function(e){
-    let t = e.target;
-    let btn = t.closest('button, .game-card, .box, .cell');
-    if(!btn) return;
-    if(btn.classList.contains('bx-alert-btn') || btn.id==='closeBtn' || btn.closest('#bxAlert')) return;
-    trackButtonClickForAd();
-}, true);
-
-function onGameWinReward(){
-    setTimeout(()=>{
-        if(confirm("🏆 You Won! Watch 10 sec Ad for Double XP (+100 XP)?")){
-            showRewardedAdFinal(100, "Double XP +100 XP 🎉🏆");
-        }
-    }, 600);
-}
-
-console.log("✅ BrainX Ad System Ready - Zone 294109 - ONLY 1st & 4th = 10sec Rewarded");
+console.log('BrainX: Monetag In-Page Push and Vignette tags initialized.');
 </script>
 
 </body>
 </html>
+   
