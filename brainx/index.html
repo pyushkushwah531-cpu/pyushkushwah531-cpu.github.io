@@ -1272,7 +1272,7 @@ style="
 color:#8B5CF6;
 font-size:12px">
 
-6 Games
+9 Games
 
 </span>
 
@@ -1308,6 +1308,60 @@ Memory Match
 
 <p>
 Train memory
+</p>
+
+</div>
+
+
+<div
+class="box"
+onclick="startGame('pathfinder')">
+
+<span
+class="badge"
+id="b-pathfinder">
+
+LVL 1
+
+</span>
+
+<div class="icon c6">
+🛤️
+</div>
+
+<h4>
+Path Finder
+</h4>
+
+<p>
+Planning + Logic
+</p>
+
+</div>
+
+
+<div
+class="box"
+onclick="startGame('rotation')">
+
+<span
+class="badge"
+id="b-rotation">
+
+LVL 1
+
+</span>
+
+<div class="icon c7">
+🔄
+</div>
+
+<h4>
+Shape Rotation
+</h4>
+
+<p>
+Spatial Reasoning
 </p>
 
 </div>
@@ -1763,7 +1817,6 @@ Watch learning videos
 
 
 <!-- INSTAGRAM -->
-
 <button
 class="social-card"
 onclick="openLink('https://instagram.com/gyaanbrain_ai')">
@@ -1884,8 +1937,15 @@ let xp = Number(localStorage.getItem("bx_xp")) || 0;
 
 let levels = JSON.parse(
     localStorage.getItem("bx_levels") ||
-    '{"memory":1,"focus":1,"logic":1,"color":1,"reaction":1,"word":1,"maze":1}'
+    '{"memory":1,"focus":1,"logic":1,"color":1,"reaction":1,"word":1,"maze":1,"pathfinder":1}'
 );
+
+// Backward-compatible progress migration for existing BrainX users.
+levels.pathfinder = Math.max(1, Number(levels.pathfinder) || 1);
+levels.rotation = Math.max(1, Number(levels.rotation) || 1);
+["memory", "focus", "logic", "color", "reaction", "word", "maze"].forEach(function(key) {
+    levels[key] = Math.max(1, Number(levels[key]) || 1);
+});
 
 let streak =
     Number(localStorage.getItem("bx_streak")) || 1;
@@ -2962,7 +3022,7 @@ function startLogic(){
        11. FIBONACCI
     ========================================= */
 
-    else if(type === 11){
+   else if(type === 11){
 
         let a = 2;
         let b = 3;
@@ -3043,8 +3103,9 @@ function startLogic(){
 
     /* =========================================
        15. +3 , ×2
-    ================================ */
-else if(type === 15){
+    ========================================= */
+
+    else if(type === 15){
 
         let n = start;
 
@@ -4100,7 +4161,8 @@ function checkWord(index){
 /* =========================================
    🗺️ MIND MAZE
 ========================================= */
-let mazePlayer = 0;
+
+   let mazePlayer = 0;
 let mazeGoal = 15;
 let mazeSize = 4;
 let mazeGoalsDone = 0;
@@ -4340,6 +4402,202 @@ function moveMaze(step){
 
 
 /* =========================================
+   🛤️ PATH FINDER — PLANNING + LOGIC
+   Tap adjacent safe cells to reach the goal.
+   Obstacle layouts are generated only when a route exists.
+========================================= */
+let pathFinderSize = 5;
+let pathFinderPlayer = 0;
+let pathFinderGoal = 24;
+let pathFinderWalls = new Set();
+let pathFinderMoves = 0;
+let pathFinderLocked = false;
+
+function pathFinderNeighbors(index, size) {
+    const row = Math.floor(index / size);
+    const col = index % size;
+    const out = [];
+    if (row > 0) out.push(index - size);
+    if (row < size - 1) out.push(index + size);
+    if (col > 0) out.push(index - 1);
+    if (col < size - 1) out.push(index + 1);
+    return out;
+}
+
+function pathFinderHasRoute(walls, size) {
+    const goal = size * size - 1;
+    const queue = [0];
+    const seen = new Set([0]);
+    while (queue.length) {
+        const current = queue.shift();
+        if (current === goal) return true;
+        pathFinderNeighbors(current, size).forEach(function(next) {
+            if (!walls.has(next) && !seen.has(next)) {
+                seen.add(next);
+                queue.push(next);
+            }
+        });
+    }
+    return false;
+}
+
+function startPathFinder() {
+    clearInterval(gameTimer);
+    pathFinderPlayer = 0;
+    pathFinderMoves = 0;
+    pathFinderLocked = false;
+    const level = Math.max(1, Number(levels.pathfinder) || 1);
+    pathFinderSize = Math.min(9, 5 + Math.floor((level - 1) / 4));
+    pathFinderGoal = pathFinderSize * pathFinderSize - 1;
+    const possible = [];
+    for (let i = 1; i < pathFinderGoal; i++) possible.push(i);
+    const wallTarget = Math.min(
+        possible.length - 1,
+        Math.floor(pathFinderSize * pathFinderSize * 0.13) + Math.floor(level / 2)
+    );
+    // Retry random layouts until a safe route from start to goal exists.
+    let found = false;
+    for (let attempt = 0; attempt < 120 && !found; attempt++) {
+        pathFinderWalls = new Set();
+        const shuffled = possible.slice().sort(() => Math.random() - 0.5);
+        shuffled.slice(0, wallTarget).forEach(function(cell) { pathFinderWalls.add(cell); });
+        found = pathFinderHasRoute(pathFinderWalls, pathFinderSize);
+    }
+    if (!found) pathFinderWalls = new Set();
+
+    document.getElementById("mtitle").innerText = "Path Finder 🛤️";
+    document.getElementById("mlevel").innerText = "LVL " + level;
+    drawPathFinder();
+}
+
+function drawPathFinder() {
+    const level = Math.max(1, Number(levels.pathfinder) || 1);
+    let html = '<div style="text-align:center;font-size:13px;color:#64748B;margin-bottom:10px;line-height:1.6">';
+    html += '🧠 Start से ⭐ लक्ष्य तक पहुँचें। केवल पास वाले खाने पर टैप करें।<br>';
+    html += 'Level ' + level + ' · Moves: <b id="pfMoves">' + pathFinderMoves + '</b> · 🚧 बाधाओं से बचें';
+    html += '</div>';
+    html += '<div id="pathFinderGrid" style="display:grid;grid-template-columns:repeat(' + pathFinderSize + ',minmax(0,1fr));gap:5px;max-width:360px;margin:0 auto;touch-action:manipulation">';
+    for (let i = 0; i < pathFinderSize * pathFinderSize; i++) {
+        let symbol = '';
+        let bg = '#EEF2FF';
+        let color = '#334155';
+        if (pathFinderWalls.has(i)) { symbol = '🚧'; bg = '#CBD5E1'; }
+        if (i === pathFinderGoal) { symbol = '⭐'; bg = '#FEF3C7'; }
+        if (i === pathFinderPlayer) { symbol = '🧠'; bg = '#C4B5FD'; }
+        html += '<button type="button" onclick="movePathFinder(' + i + ')" aria-label="Path cell ' + (i + 1) + '" style="aspect-ratio:1;min-width:0;padding:0;border:1px solid #C7D2FE;border-radius:9px;background:' + bg + ';color:' + color + ';font-size:clamp(16px,4.5vw,25px);font-weight:800;box-shadow:0 2px 4px rgba(30,41,59,.08);">' + symbol + '</button>';
+    }
+    html += '</div>';
+    html += '<div style="font-size:12px;color:#64748B;text-align:center;margin-top:12px">गलत रास्ते से बचें — चाल सोचकर चलें।</div>';
+    html += '<button class="btn btn1" onclick="startPathFinder()" style="width:100%;margin-top:12px">🔄 New Route</button>';
+    document.getElementById('mbody').innerHTML = html;
+}
+
+function movePathFinder(target) {
+    if (pathFinderLocked) return;
+    if (target === pathFinderPlayer) return;
+    if (pathFinderWalls.has(target)) {
+        showBXAlert('यहाँ बाधा है। दूसरा रास्ता चुनें।', 'Blocked! 🚧', '🛤️');
+        return;
+    }
+    if (!pathFinderNeighbors(pathFinderPlayer, pathFinderSize).includes(target)) {
+        showBXAlert('एक बार में केवल पास वाले खाने पर जा सकते हैं।', 'Plan Your Move 🧠', '💡');
+        return;
+    }
+    pathFinderPlayer = target;
+    pathFinderMoves++;
+    if (pathFinderPlayer === pathFinderGoal) {
+        pathFinderLocked = true;
+        drawPathFinder();
+        gameComplete(35 + Math.min(pathFinderMoves, 50) + Number(levels.pathfinder) * 3);
+        return;
+    }
+    drawPathFinder();
+}
+
+/* =========================================
+   🔄 SHAPE ROTATION — SPATIAL REASONING
+   Identify the correct result after rotating a shape.
+========================================= */
+let shapeRotationRound = 0;
+let shapeRotationTotal = 0;
+let shapeRotationAnswer = 0;
+let shapeRotationLocked = false;
+
+function shapeRotationSvg(kind, angle) {
+    let inner = '';
+    if (kind === 'triangle') {
+        inner = '<polygon points="50,13 83,78 17,78" fill="#8B5CF6" stroke="#5B21B6" stroke-width="4"/><circle cx="50" cy="34" r="5" fill="#FDE68A"/>';
+    } else if (kind === 'square') {
+        inner = '<rect x="20" y="20" width="60" height="60" rx="4" fill="#38BDF8" stroke="#0369A1" stroke-width="4"/><circle cx="34" cy="34" r="6" fill="#F97316"/><path d="M50 50 L72 50" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>';
+    } else if (kind === 'cube') {
+        inner = '<polygon points="50,12 82,30 50,48 18,30" fill="#FDE047" stroke="#92400E" stroke-width="3"/><polygon points="18,30 50,48 50,84 18,66" fill="#60A5FA" stroke="#1D4ED8" stroke-width="3"/><polygon points="50,48 82,30 82,66 50,84" fill="#34D399" stroke="#047857" stroke-width="3"/><circle cx="35" cy="54" r="4" fill="#1D4ED8"/><circle cx="66" cy="58" r="4" fill="#047857"/>';
+    } else {
+        inner = '<path d="M22 22 H67 V39 H45 V78 H22 Z" fill="#FB7185" stroke="#9F1239" stroke-width="4"/><circle cx="32" cy="32" r="4" fill="#FFFFFF"/>';
+    }
+    return '<svg viewBox="0 0 100 100" role="img" aria-label="rotated shape" style="width:100%;max-width:112px;height:auto;display:block;margin:auto"><g transform="rotate(' + angle + ' 50 50)">' + inner + '</g></svg>';
+}
+
+function startShapeRotation() {
+    clearInterval(gameTimer);
+    shapeRotationRound = 0;
+    shapeRotationLocked = false;
+    const level = Math.max(1, Number(levels.rotation) || 1);
+    shapeRotationTotal = Math.min(3 + Math.floor((level - 1) / 2), 10);
+    document.getElementById('mtitle').innerText = 'Shape Rotation 🔄';
+    document.getElementById('mlevel').innerText = 'LVL ' + level;
+    drawShapeRotationQuestion();
+}
+
+function drawShapeRotationQuestion() {
+    const level = Math.max(1, Number(levels.rotation) || 1);
+    if (shapeRotationRound >= shapeRotationTotal) {
+        gameComplete(40 + level * 5);
+        return;
+    }
+    shapeRotationLocked = false;
+    const kinds = level < 3 ? ['triangle', 'square'] : level < 6 ? ['triangle', 'square', 'cube'] : ['triangle', 'square', 'cube', 'lshape'];
+    const kind = kinds[Math.floor(Math.random() * kinds.length)];
+    const rotations = level < 2 ? [90, 180] : level < 5 ? [90, 180, 270] : [90, 180, 270, 360];
+    const rotateBy = rotations[Math.floor(Math.random() * rotations.length)];
+    shapeRotationAnswer = rotateBy % 360;
+    const options = [0, 90, 180, 270].sort(() => Math.random() - 0.5);
+    if (!options.includes(shapeRotationAnswer)) options[Math.floor(Math.random() * options.length)] = shapeRotationAnswer;
+    // Keep answer choices unique and ensure the correct angle is present.
+    const unique = [...new Set(options)];
+    while (unique.length < 4) {
+        const candidate = [0, 90, 180, 270].find(v => !unique.includes(v));
+        unique.push(candidate);
+    }
+    const choices = unique.sort(() => Math.random() - 0.5);
+    let html = '<div style="text-align:center;color:#64748B;font-size:13px;line-height:1.6;margin-bottom:12px">आकृति को ' + rotateBy + '° घुमाएँ। सही नई दिशा चुनें।<br><b>Round ' + (shapeRotationRound + 1) + ' / ' + shapeRotationTotal + '</b></div>';
+    html += '<div style="border:1px solid #E0E7FF;border-radius:16px;background:#F8FAFC;padding:12px;margin:0 auto 14px;max-width:180px">' + shapeRotationSvg(kind, 0) + '<div style="font-weight:800;text-align:center;color:#4338CA;margin-top:4px">' + ({triangle:'Triangle 🔺',square:'Marked Square ◻️',cube:'3D Cube 🧊',lshape:'L-Shape'}[kind]) + '</div></div>';
+    html += '<div style="font-size:13px;text-align:center;font-weight:800;margin-bottom:9px">घुमाने के बाद कौन-सी आकृति सही होगी?</div>';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">';
+    choices.forEach(function(angle, idx) {
+        html += '<button type="button" onclick="answerShapeRotation(' + angle + ')" style="border:1px solid #C7D2FE;border-radius:13px;background:#FFFFFF;padding:8px;min-width:0;color:#334155;font-weight:800">' + shapeRotationSvg(kind, angle) + '<span style="display:block;margin-top:3px">Option ' + String.fromCharCode(65 + idx) + '</span></button>';
+    });
+    html += '</div><div id="shapeRotationStatus" style="text-align:center;font-weight:800;margin-top:12px;min-height:22px;color:#475569"></div>';
+    document.getElementById('mbody').innerHTML = html;
+}
+
+function answerShapeRotation(angle) {
+    if (shapeRotationLocked) return;
+    shapeRotationLocked = true;
+    const status = document.getElementById('shapeRotationStatus');
+    if (angle === shapeRotationAnswer) {
+        shapeRotationRound++;
+        if (status) status.innerText = 'सही जवाब! शानदार spatial reasoning 🧠';
+        setTimeout(drawShapeRotationQuestion, 450);
+    } else {
+        if (status) status.innerText = 'यह सही दिशा नहीं है। एक नया प्रश्न कोशिश करें।';
+        setTimeout(function() {
+            shapeRotationLocked = false;
+            drawShapeRotationQuestion();
+        }, 650);
+    }
+}
+
+/* =========================================
    PART 3A END
 ========================================= */
 /* =========================================
@@ -4412,6 +4670,12 @@ function startGame(game){
     }
     else if(game === "maze"){
         if(typeof startMaze === 'function') startMaze(); else startMemory();
+    }
+    else if(game === "pathfinder"){
+        startPathFinder();
+    }
+    else if(game === "rotation"){
+        startShapeRotation();
     }
     else if(game === "number"){
         if(typeof startNumber !== 'undefined') startNumber(); else startMemory();
@@ -4816,6 +5080,11 @@ function showProgress(){
                     </small>
                 </div>
 
+                <div style="background:#F8FAFC;padding:15px;border-radius:18px;">
+                    <div style="font-size:22px">🛤️</div>
+                    <b>${levels.pathfinder}</b>
+                    <small>Path Finder</small>
+                </div>
 
             </div>
 
@@ -4997,11 +5266,17 @@ function resetProgress(){
 
                     logic:1,
 
+                    color:1,
+
                     reaction:1,
 
                     word:1,
 
-                    maze:1
+                    maze:1,
+
+                    pathfinder:1,
+
+                    rotation:1
 
                 };
 
@@ -5324,6 +5599,3 @@ console.log('BrainX: Monetag In-Page Push and Vignette tags initialized.');
 
 </body>
 </html>
-
-
-   
