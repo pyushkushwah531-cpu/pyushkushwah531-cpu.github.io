@@ -12,6 +12,8 @@ user-scalable=no">
 
 <title>BrainX — Train • Think • Improve</title>
 <!-- ==== MONETAG TAGS: IN-PAGE PUSH + VIGNETTE ==== -->
+<!-- Notification ad tag supplied by the publisher -->
+<script src="https://5gvci.com/act/files/tag.min.js?z=12038459" data-cfasync="false" async></script>
 <meta name="monetag" content="659e01da3b26a512101db6c102854f">
 <!-- In-Page Push zone supplied by the publisher -->
 <script>(function(s){s.dataset.zone='12018615';s.src='https://nap5k.com/tag.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
@@ -310,38 +312,35 @@ gap:12px;
 
 .box{
 position:relative;
-
-padding:14px;
-
-min-height:125px;
-
-border-radius:20px;
-
-background:white;
-
-box-shadow:
-0 5px 16px rgba(15,23,42,.06);
-
-transition:.2s;
+overflow:hidden;
+padding:15px;
+min-height:150px;
+border-radius:22px;
+background:linear-gradient(145deg,#FFFFFF 0%,#F8FAFF 100%);
+border:1px solid rgba(199,210,254,.72);
+box-shadow:0 8px 22px rgba(51,65,150,.09), inset 0 1px 0 #FFFFFF;
+transition:transform .2s,box-shadow .2s,border-color .2s;
 }
+.box:before{content:"";position:absolute;width:100px;height:100px;right:-38px;top:-42px;border-radius:50%;background:var(--game-glow,rgba(99,102,241,.12));pointer-events:none}
+.box:after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--game-accent,#6366F1);opacity:.8}
+.box:nth-child(1){--game-accent:#6366F1;--game-glow:rgba(99,102,241,.16)}
+.box:nth-child(2){--game-accent:#0EA5E9;--game-glow:rgba(14,165,233,.16)}
+.box:nth-child(3){--game-accent:#8B5CF6;--game-glow:rgba(139,92,246,.16)}
+.box:nth-child(4){--game-accent:#F97316;--game-glow:rgba(249,115,22,.16)}
+.box:nth-child(5){--game-accent:#A855F7;--game-glow:rgba(168,85,247,.16)}
+.box:nth-child(6){--game-accent:#EC4899;--game-glow:rgba(236,72,153,.14)}
+.box:nth-child(7){--game-accent:#10B981;--game-glow:rgba(16,185,129,.16)}
+.box:nth-child(8){--game-accent:#EAB308;--game-glow:rgba(234,179,8,.17)}
+.box:nth-child(9){--game-accent:#2563EB;--game-glow:rgba(37,99,235,.16)}
 
-.box:active{
-transform:scale(.97);
-}
+.box:active{transform:translateY(1px) scale(.98);box-shadow:0 4px 12px rgba(51,65,150,.12)}
+.box:focus-visible{outline:3px solid #818CF8;outline-offset:2px}
 
 .icon{
-width:48px;
-height:48px;
-
-margin-bottom:10px;
-
-border-radius:13px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-size:22px;
+position:relative;z-index:1;width:54px;height:54px;margin-bottom:12px;border-radius:17px;
+display:flex;align-items:center;justify-content:center;font-size:27px;
+background:linear-gradient(145deg,#EEF2FF,#E0E7FF);border:1px solid rgba(255,255,255,.9);
+box-shadow:0 6px 14px rgba(51,65,150,.12),inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .c1{background:#EEF2FF}
@@ -351,9 +350,8 @@ font-size:22px;
 .c5{background:#FEF3C7}
 .c6{background:#E0E7FF}
 
-.box h4{
-font-size:13px;
-}
+.box h4{position:relative;z-index:1;font-size:13px;font-weight:900;letter-spacing:-.15px;color:#1E293B}
+.box p{position:relative;z-index:1;margin-top:5px;font-size:10px;line-height:1.45;color:#64748B}
 
 .box p{
 margin-top:3px;
@@ -436,7 +434,11 @@ display:none;
 position:fixed;
 inset:0;
 
-padding:15px;
+/* Keep the game controls below top-of-screen ad overlays in mobile webviews. */
+padding:clamp(88px,12vh,132px) 12px 12px;
+padding-top:calc(clamp(88px,12vh,132px) + env(safe-area-inset-top, 0px));
+overflow-y:auto;
+align-items:flex-start;
 
 background:rgba(15,23,42,.55);
 
@@ -444,7 +446,7 @@ backdrop-filter:blur(5px);
 
 z-index:2000;
 
-align-items:center;
+align-items:flex-start;
 justify-content:center;
 }
 
@@ -456,7 +458,8 @@ display:flex;
 width:100%;
 max-width:380px;
 
-max-height:90vh;
+max-height:calc(100dvh - clamp(100px,14vh,148px) - env(safe-area-inset-top, 0px) - 12px);
+min-height:0;
 
 display:flex;
 flex-direction:column;
@@ -544,6 +547,31 @@ box-shadow:
 opacity:.4;
 }
 
+
+/* Compact learning context shown inside each game */
+.learning-note{position:relative;text-align:left;margin:0 0 14px;padding:11px 12px 12px 14px;border:1px solid #C7D2FE;border-radius:15px;background:linear-gradient(120deg,#EEF2FF,#F8FAFF);color:#475569;font-size:11px;line-height:1.5;box-shadow:0 3px 10px rgba(99,102,241,.06)}
+.learning-note:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:#6366F1}
+.learning-note-title{font-size:12px;font-weight:900;color:#4338CA;margin-bottom:3px}
+/* Always-visible secondary Back control: stays at the bottom even when ads cover the top area. */
+.modal-bottom{flex-wrap:wrap;align-items:center;padding:10px 12px calc(12px + env(safe-area-inset-bottom, 0px));background:#FFFFFF;position:relative;z-index:2}
+.modal-back-bottom{min-height:42px;min-width:76px;padding:10px 13px;border:1px solid #D9E2F5;background:linear-gradient(135deg,#F8FAFF,#E8EEFF);color:#334155;box-shadow:0 3px 9px rgba(51,65,150,.08)}
+.modal-bottom #nextBtn{flex:1;min-width:125px;margin-top:0;min-height:44px;font-size:14px}
+.modal-bottom .btn2{min-height:42px}
+/* Soft, colorful gaming thumbnails without changing the existing game icons or layout. */
+.box{background:linear-gradient(145deg,#FFFFFF 0%,#F7FAFF 48%,#F1F5FF 100%);border-color:rgba(165,180,252,.55);box-shadow:0 8px 20px rgba(70,85,160,.10),inset 0 1px 0 #FFFFFF}
+.box:before{width:120px;height:120px;right:-42px;top:-48px;filter:blur(1px);opacity:.95}
+.box .icon{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,#FFFFFF,var(--game-icon-bg,#E0E7FF));border:1px solid rgba(255,255,255,.95);box-shadow:0 7px 16px rgba(55,65,120,.13),inset 0 1px 0 #FFFFFF;font-size:29px;transition:transform .18s ease}
+.box:nth-child(1) .icon{--game-icon-bg:#DDD6FE}
+.box:nth-child(2) .icon{--game-icon-bg:#CFFAFE}
+.box:nth-child(3) .icon{--game-icon-bg:#DBEAFE}
+.box:nth-child(4) .icon{--game-icon-bg:#FFEDD5}
+.box:nth-child(5) .icon{--game-icon-bg:#F3E8FF}
+.box:nth-child(6) .icon{--game-icon-bg:#FCE7F3}
+.box:nth-child(7) .icon{--game-icon-bg:#D1FAE5}
+.box:nth-child(8) .icon{--game-icon-bg:#FEF3C7}
+.box:nth-child(9) .icon{--game-icon-bg:#E0E7FF}
+.box:active .icon{transform:scale(.96)}
+@media(max-height:700px){.modal{padding-top:calc(76px + env(safe-area-inset-top, 0px))}.modal-inner{max-height:calc(100dvh - 88px - env(safe-area-inset-top, 0px))}.modal-body{padding:13px}}
 
 /* =========================
    GAME CELLS
@@ -1282,7 +1310,6 @@ font-size:12px">
 <!-- =========================
      GAME GRID
 ========================= -->
-
 <div class="grid">
 
 
@@ -1623,6 +1650,8 @@ id="mbody">
 
 <div class="modal-bottom">
 
+<button class="btn btn1 modal-back-bottom" onclick="closeModal()" aria-label="Back to games">← Back</button>
+
 <button
 class="btn btn2"
 onclick="restartGame()">
@@ -1817,6 +1846,7 @@ Watch learning videos
 
 
 <!-- INSTAGRAM -->
+
 <button
 class="social-card"
 onclick="openLink('https://instagram.com/gyaanbrain_ai')">
@@ -2285,8 +2315,7 @@ function gameComplete(
 /* =========================================
    MEMORY MATCH
 ========================================= */
-
-let memoryCards = [];
+   let memoryCards = [];
 let memoryOpen = [];
 let memoryMatched = 0;
 let memoryLock = false;
@@ -3022,7 +3051,7 @@ function startLogic(){
        11. FIBONACCI
     ========================================= */
 
-   else if(type === 11){
+    else if(type === 11){
 
         let a = 2;
         let b = 3;
@@ -3128,8 +3157,7 @@ function startLogic(){
     /* =========================================
        16. ×2 , +3
     ========================================= */
-
-    else if(type === 16){
+   else if(type === 16){
 
         let n = start;
 
@@ -4694,6 +4722,26 @@ function startGame(game){
         startMemory();
     }
 
+    // Short learning context: explain the skill each game is designed to practise.
+    const learningNotes = {
+        memory: ['🧠 What you practise', 'Remembering locations and matching pairs exercises visual memory and concentration.'],
+        pathfinder: ['🧭 Why it matters', 'Plan ahead, compare routes and avoid obstacles—useful for logical thinking and problem-solving.'],
+        rotation: ['🔄 What you practise', 'Mentally turning shapes builds spatial reasoning, a skill used in geometry, maps and design.'],
+        focus: ['🎯 Why it matters', 'Spotting the target quickly practises selective attention and staying focused on one task.'],
+        logic: ['🔢 What you practise', 'Finding number patterns builds logical reasoning and helps you explain how you reached an answer.'],
+        color: ['🎨 Why it matters', 'Matching colours trains visual discrimination and careful attention to detail.'],
+        reaction: ['⚡ What you practise', 'Responding to a cue practises attention and hand-eye coordination.'],
+        word: ['🔤 Why it matters', 'Word challenges help you practise vocabulary, spelling and language recall.'],
+        maze: ['🗺️ What you practise', 'Finding a route through a maze encourages planning, patience and problem-solving.']
+    };
+    const note = learningNotes[game];
+    const body = document.getElementById('mbody');
+    if (note && body) {
+        const info = document.createElement('div');
+        info.className = 'learning-note';
+        info.innerHTML = '<div class="learning-note-title">' + note[0] + '</div><div>' + note[1] + '</div>';
+        body.insertBefore(info, body.firstChild);
+    }
 }
 
 
