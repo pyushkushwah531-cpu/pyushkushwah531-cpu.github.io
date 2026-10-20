@@ -1183,7 +1183,7 @@ Give your mind a fun daily workout.
 
 
 <!-- BANNER AD - HOME TOP -->
-<div class="ad-banner-box" id="banner-home-top"><span class="ad-label">Monetag In-Page Push enabled above</span></div>
+<!-- banner-home-top removed - was showing confusing placeholder text -->
 <div class="card">
 
 <div class="brain">
@@ -1288,7 +1288,7 @@ id="stNum">
 
 
 <!-- BANNER AD - HOME MID -->
-<div class="ad-banner-box" id="banner-home-mid"><span class="ad-label">Monetag In-Page Push enabled above</span></div>
+<!-- banner-home-mid removed -->
 <div class="games-title">
 
 <span>
@@ -1564,9 +1564,7 @@ Find path
 
 
 <!-- BANNER AD - STICKY BOTTOM -->
-<div id="sticky-banner" style="position:fixed; bottom:70px; left:50%; transform:translateX(-50%); width:95%; max-width:480px; min-height:60px; background:white; border-radius:14px; box-shadow:0 8px 25px rgba(0,0,0,.15); z-index:400; display:flex; align-items:center; justify-content:center; border:1px solid #E2E8F0;">
-    <span class="ad-label">Monetag In-Page Push enabled above</span>
-</div>
+<!-- sticky-banner placeholder removed -->
 
 <div class="nav">
 
@@ -2413,8 +2411,7 @@ function startMemory(){
 /* =========================================
    MEMORY CLICK
 ========================================= */
-
-function memoryClick(index){
+   function memoryClick(index){
 
     if(memoryLock)
         return;
@@ -3432,8 +3429,7 @@ updateUI();
 /* =========================================
    🎨 COLOR MATCH
 ========================================= */
-
-let colorAnswer = "";
+   let colorAnswer = "";
 let colorScore = 0;
 let colorTotal = 0;
 let colorActive = false;
@@ -4512,7 +4508,8 @@ function drawPathFinder() {
         if (pathFinderWalls.has(i)) { symbol = '🚧'; bg = '#CBD5E1'; }
         if (i === pathFinderGoal) { symbol = '⭐'; bg = '#FEF3C7'; }
         if (i === pathFinderPlayer) { symbol = '🧠'; bg = '#C4B5FD'; }
-        html += '<button type="button" onclick="movePathFinder(' + i + ')" aria-label="Path cell ' + (i + 1) + '" style="aspect-ratio:1;min-width:0;padding:0;border:1px solid #C7D2FE;border-radius:9px;background:' + bg + ';color:' + color + ';font-size:clamp(16px,4.5vw,25px);font-weight:800;box-shadow:0 2px 4px rgba(30,41,59,.08);">' + symbol + '</button>';
+
+html += '<button type="button" onclick="movePathFinder(' + i + ')" aria-label="Path cell ' + (i + 1) + '" style="aspect-ratio:1;min-width:0;padding:0;border:1px solid #C7D2FE;border-radius:9px;background:' + bg + ';color:' + color + ';font-size:clamp(16px,4.5vw,25px);font-weight:800;box-shadow:0 2px 4px rgba(30,41,59,.08);">' + symbol + '</button>';
     }
     html += '</div>';
     html += '<div style="font-size:12px;color:#64748B;text-align:center;margin-top:12px">गलत रास्ते से बचें — चाल सोचकर चलें।</div>';
@@ -5268,8 +5265,6 @@ async function shareBrainX(){
     }
 
 }
-
-
 /* =========================================
    🗑️ RESET PROGRESS
 ========================================= */
@@ -5647,3 +5642,5 @@ console.log('BrainX: Monetag In-Page Push and Vignette tags initialized.');
 
 </body>
 </html>
+
+   
